@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import Preload from './components/Preloader';
+import Preloader from './components/Preloader';
 
 class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            isLoading: true
+        }
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({ isLoading: false })
+        }, 1500)
+    }
+
     render() {
         return (
             <div>
-                <Preload />
+               {
+                this.state.isLoading ? 
+                <Preloader /> :
                 <Header />
+                } 
             </div>
         )
     }
