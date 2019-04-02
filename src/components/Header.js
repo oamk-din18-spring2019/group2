@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import '../css/header.css'
 
 class Header extends Component {
     render() {
         return (
-            <header>
-                <h1>React Working!</h1>
+            <header className="header">
+                <a href="/"><img className="header-logo" alt="madmind" src={require('../img/madmind.png')} /></a>
+
+                <nav className="navbar">
+                    <a className="navbar-link login" href="/">LOGIN</a>
+                    <a className="navbar-link signUp" href="/">SIGN UP</a>
+                </nav>
             </header>
         )
     }
