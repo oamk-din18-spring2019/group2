@@ -1,6 +1,8 @@
+// Import all the stuff we need
 import React, { Component } from 'react';
-import Header from './components/Header';
-import Preloader from './components/Preloader';
+import Header from './components/Header/Header';
+import Preloader from './components/Preloader/Preloader';
+import StartingPage from './components/StartingPage/StartingPage';
 
 class App extends Component {
     render() {
@@ -8,6 +10,7 @@ class App extends Component {
             <div>
                 <Preloader />
                 <Header />
+                <StartingPage />
             </div>
         )
     }

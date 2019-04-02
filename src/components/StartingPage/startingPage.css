@@ -1,0 +1,43 @@
+body {
+    background-color: #36393f;
+}
+
+.content-wrapper {
+    position: fixed;
+    top: 3.5rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.monkaS {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    top: 16rem;
+    width: 30rem;
+    height: 40rem;
+    margin: -15rem 0 0 -15rem;
+    border: 3px solid red;
+}
+
+.logo {
+    height: 16rem;
+    justify-items: center;
+}
+
+.btn {
+    margin-top: 5rem;
+    width: 15rem;
+
+    background-color: #D8DEE9;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Montserrat';
+    padding: 10px 0 10px 0;
+    border: 3px solid #555555;
+    border-radius: 5px;
+}

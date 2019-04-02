@@ -1,6 +1,6 @@
 // Import all the important stuff we need
 import React, { Component } from 'react';
-import '../css/preloader.css';
+import './preloader.css';
 
 // Initialize the preloader component as a class type component
 class Preloader extends Component {

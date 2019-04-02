@@ -12,6 +12,7 @@ body {
     font-size: 0.8rem;
     height: 3.5rem;
     padding: 0px 2rem;
+    z-index: 10000;
 }
 
 .header-logo {
@@ -29,9 +30,15 @@ body {
 }
 
 .navbar-link {
-    color: rgb(216, 222, 233);
-    margin-left: 1em;
+    color:#acb1ba;
+    margin-left: 1rem;
+    padding: 1.25rem 0;
     text-transform: uppercase;
     text-decoration: none;
+    font-family: 'Montserrat';
     transition: color 0.2s ease 0s;
+}
+
+.navbar-link:hover {
+    color: #D8DEE9;
 }
