@@ -8,8 +8,8 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Preloader />
                 <Header />
+                <Preloader />
                 <StartingPage />
             </div>
         )

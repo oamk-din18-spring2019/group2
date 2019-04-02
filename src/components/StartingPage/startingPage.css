@@ -12,16 +12,12 @@ body {
 }
 
 .monkaS {
+    position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
-    position: relative;
-    left: 50%;
-    top: 16rem;
-    width: 30rem;
-    height: 40rem;
-    margin: -15rem 0 0 -15rem;
-    border: 3px solid red;
+    top: 15%;
+    margin: auto;
 }
 
 .logo {
@@ -29,15 +25,28 @@ body {
     justify-items: center;
 }
 
-.btn {
+.btn-group {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin-top: 5rem;
-    width: 15rem;
+}
 
-    background-color: #D8DEE9;
+.btn {
+    margin-top: 15px;
+    width: 15rem;
+    background-color: #ff8648;
     text-decoration: none;
     text-align: center;
     font-family: 'Montserrat';
-    padding: 10px 0 10px 0;
-    border: 3px solid #555555;
-    border-radius: 5px;
+    padding: 17px 0;
+    border: 1px solid #ff8648;
+    border-radius: 3px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.btn:hover {
+    background-color: #36393f;
+    color: #ff8648;
 }
