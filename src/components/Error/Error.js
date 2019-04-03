@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SignInPage extends Component {
+class Error extends Component {
     render() {
         return (
             <div>
@@ -10,4 +10,4 @@ class SignInPage extends Component {
     }
 }
 
-export default SignInPage;
+export default Error;
