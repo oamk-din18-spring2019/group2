@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+// Import the components
 import StartingPage from './components/StartingPage/StartingPage';
 import SignInPage from './components/SignInPage/SignInPage';
 import Header from './components/Header/Header';
@@ -18,7 +19,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/" component={StartingPage} exact />
                     <Route path="/login" component={LogInPage} />
-                    <Route path="/signin" component={SignInPage} />
+                    <Route path="/signup" component={SignInPage} />
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>

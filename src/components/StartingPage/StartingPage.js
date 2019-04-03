@@ -13,8 +13,8 @@ class StartingPage extends Component {
                             <Link to="/login">
                                 <button className="btn log-in">LOGIN</button>
                             </Link>
-                            <Link to="/signin">
-                                <button className="btn sign-in">SIGN UP</button>
+                            <Link to="/signup">
+                                <button className="btn sign-up">SIGN UP</button>
                             </Link>
                         </div>
                     </div>

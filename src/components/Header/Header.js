@@ -15,7 +15,7 @@ class Header extends Component {
                     <NavLink to="/login" className="navbar-link login">
                         LOGIN
                     </NavLink>
-                    <NavLink to="/signin" className="navbar-link login">
+                    <NavLink to="/signup" className="navbar-link login">
                         SIGN UP
                     </NavLink>
                 </nav>
