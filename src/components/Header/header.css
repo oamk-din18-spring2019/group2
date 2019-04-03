@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    margin: 0;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #202225;
+    display: flex;
+    font-size: 0.8rem;
+    height: 3.5rem;
+    padding: 0px 2rem;
+    z-index: 10000;
+}
+
+.header-logo {
+    height: 3rem;
+    vertical-align: middle;
+}
+
+.navbar {
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    flex: 1 1 0%;
+}
+
+.navbar-link {
+    color:#acb1ba;
+    margin-left: 1rem;
+    padding: 1.25rem 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: 'Montserrat';
+    transition: color 0.2s ease 0s;
+}
+
+.navbar-link:hover {
+    color: #D8DEE9;
+}
