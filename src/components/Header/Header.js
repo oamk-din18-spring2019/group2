@@ -1,16 +1,23 @@
 // Import all the stuff we need
 import React, { Component } from 'react';
-import './header.css'
+import { NavLink } from 'react-router-dom';
+import './header.css';
 
 class Header extends Component {
     render() {
         return (
             <header className="header">
-                <a href="/"><img className="header-logo" alt="madmind" src={require('../../img/madmind.png')} /></a>
+                <NavLink to="/">
+                    <img className="header-logo" alt="madmind" src={require('../../img/madmind.png')} />
+                </NavLink>
 
                 <nav className="navbar">
-                    <a className="navbar-link login" href="/">LOGIN</a>
-                    <a className="navbar-link signUp" href="/">SIGN UP</a>
+                    <NavLink to="/login" className="navbar-link login">
+                        LOGIN
+                    </NavLink>
+                    <NavLink to="/signin" className="navbar-link login">
+                        SIGN UP
+                    </NavLink>
                 </nav>
             </header>
         )
