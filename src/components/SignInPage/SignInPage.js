@@ -5,22 +5,29 @@ class SignInPage extends Component {
         super();
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            passwordConfirm: ''
         }
 
+        // Bind the function to make `this` work in the callback
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleValidation(){
+    handleValidation() {
         let formIsValid = true;
 
-        if (!/^[a-zA-Z]+$/.test(this.state.username)){
+        // Test if the username and password are valid inputs
+        if (!/^[a-zA-Z]+$/.test(this.state.username)) {
             formIsValid = false;
             alert('Your username can contain only letters');
         }
         if (this.state.password.length < 5 ) {
             formIsValid = false;
             alert("Your password must be atleast 5 characters long") ;
+        }
+        if (this.state.passwordConfirm !== this.state.password) {
+            formIsValid = false;
+            alert("Your passwords don't match");
         }
         return formIsValid;
     }
@@ -42,13 +49,13 @@ class SignInPage extends Component {
         return (
             <div>
                 <div>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={ this.handleSubmit }>
                     <input
                     type="text"
                     name = "username"
                     placeholder="Username"
                     onChange = {(event) =>
-                    this.setState({username: event.target.value})}
+                    this.setState({ username: event.target.value })}
                     />
                     <br/>
                     <input
@@ -56,7 +63,15 @@ class SignInPage extends Component {
                     name = "password"
                     placeholder="Password"
                     onChange = {(event) =>
-                    this.setState({password:event.target.value})}
+                    this.setState({ password: event.target.value })}
+                    />
+                    <br />
+                    <input
+                    type="password"
+                    name = "passwordConfirm"
+                    placeholder="Confirm Password"
+                    onChange = {(event) =>
+                    this.setState({ passwordConfirm: event.target.value })}
                     />
                     <br/>
                     <button onClick={(event) =>this.handleSubmit(event)}>Sign Up</button>
