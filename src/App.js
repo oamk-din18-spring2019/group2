@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import Preloader from './components/Preloader/Preloader';
 import LogInPage from './components/LogInPage/LogInPage';
 import Error from './components/Error/Error';
+import './main.css';
 
 class App extends Component {
     render() {

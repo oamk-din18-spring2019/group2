@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './signInPage.css';
+
 class SignInPage extends Component {
     constructor() {
         super();
@@ -34,47 +36,58 @@ class SignInPage extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        
+        let data = this.state;
+        data.append("monkas", JSON.stringify(data));
+
         if (this.handleValidation()) {
-            console.log("The form was submitted with the following data:");
-            console.log(this.state);
-            // ADD the code to submit data into database here //
+            
+            fetch('http://localhost:3004/users', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: data
+            })
         }
         else {
             console.log("Form has errors!");
-        }
-       
+        } 
     }
 
     render() {
         return (
-            <div>
-                <div>
+            <div className="form-wrapper">
+                <div className="form-group">
                     <form onSubmit={ this.handleSubmit }>
-                    <input
-                    type="text"
-                    name = "username"
-                    placeholder="Username"
-                    onChange = {(event) =>
-                    this.setState({ username: event.target.value })}
-                    />
-                    <br/>
-                    <input
-                    type="password"
-                    name = "password"
-                    placeholder="Password"
-                    onChange = {(event) =>
-                    this.setState({ password: event.target.value })}
-                    />
-                    <br />
-                    <input
-                    type="password"
-                    name = "passwordConfirm"
-                    placeholder="Confirm Password"
-                    onChange = {(event) =>
-                    this.setState({ passwordConfirm: event.target.value })}
-                    />
-                    <br/>
-                    <button onClick={(event) =>this.handleSubmit(event)}>Sign Up</button>
+                        <input
+                            className="signup-input"
+                            type="text"
+                            name = "username"
+                            placeholder="Username"
+                            onChange = {(event) =>
+                                this.setState({ username: event.target.value })}
+                        />
+                        <br/>
+                        <input
+                            className="signup-input"
+                            type="password"
+                            name = "password"
+                            placeholder="Password"
+                            onChange = {(event) =>
+                                this.setState({ password: event.target.value })}
+                        />
+                        <br />
+                        <input
+                            className="signup-input"
+                            type="password"
+                            name = "passwordConfirm"
+                            placeholder="Confirm Password"
+                            onChange = {(event) =>
+                                this.setState({ passwordConfirm: event.target.value })}
+                        />
+                        <br/>
+                        <button className="signup-button" onClick={(event) =>this.handleSubmit(event)}>SIGN UP</button>
                     </form>
                 </div>
             </div>

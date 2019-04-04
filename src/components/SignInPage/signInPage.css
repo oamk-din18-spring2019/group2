@@ -1,4 +1,4 @@
-.content-wrapper {
+.form-wrapper {
     position: fixed;
     top: 3.5rem;
     left: 0;
@@ -7,28 +7,30 @@
     z-index: 1;
 }
 
-.monkaS {
+.form-group {
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
-    top: 15%;
+    top: 25%;
     margin: auto;
 }
 
-.logo {
-    height: 16rem;
-    justify-items: center;
+.signup-input {
+    margin-top: 5px;
+    width: 15rem;
+    background-color: #36393f;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Montserrat';
+    padding: 17px 0;
+    border: 1px solid #ff8648;
+    border-radius: 3px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
 
-.btn-group {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 5rem;
-}
-
-.btn {
+.signup-button {
     margin-top: 15px;
     width: 15rem;
     background-color: #ff8648;
@@ -42,7 +44,7 @@
     transition-duration: 0.4s;
 }
 
-.btn:hover {
+.signup-button:hover {
     background-color: #36393f;
     color: #ff8648;
 }
