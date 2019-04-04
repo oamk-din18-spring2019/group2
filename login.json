@@ -1,3 +1,7 @@
 {
-  "users": {}
+  "users": {
+    "id": 6,
+    "username": "autism",
+    "password": "12345"
+  }
 }

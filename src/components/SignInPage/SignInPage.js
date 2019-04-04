@@ -6,6 +6,7 @@ class SignInPage extends Component {
     constructor() {
         super();
         this.state = {
+            id: Math.floor(Math.random() * 100), // DON'T FUCKING DO THIS HOLY FUCKING SHITTO
             username: '',
             password: '',
             passwordConfirm: ''
@@ -36,21 +37,25 @@ class SignInPage extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        
-        let data = this.state;
-        data.append("monkas", JSON.stringify(data));
 
+        // DON'T DO THIS EITHER HOLY FUCKING SHITTO
+        let data = {
+            id: this.state.id,
+            username: this.state.username,
+            password: this.state.password
+        }
+
+        // POST a bunch of mock up data to out fake rest api
         if (this.handleValidation()) {
-            
             fetch('http://localhost:3004/users', {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/json'
                 },
-                body: data
+                body: JSON.stringify(data)
             })
-        }
-        else {
+            .then(response => response.json());
+        } else {
             console.log("Form has errors!");
         } 
     }
