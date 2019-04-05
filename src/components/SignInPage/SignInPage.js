@@ -6,7 +6,7 @@ class SignInPage extends Component {
     constructor() {
         super();
         this.state = {
-            id: Math.floor(Math.random() * 100), // DON'T FUCKING DO THIS HOLY FUCKING SHITTO
+            id: 0,
             username: '',
             password: '',
             passwordConfirm: ''
@@ -14,6 +14,14 @@ class SignInPage extends Component {
 
         // Bind the function to make `this` work in the callback
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:3004/users')
+        .then(response => response.json())
+        .then(myJSON => {
+            console.log(myJSON)
+        })
     }
 
     handleValidation() {
@@ -38,7 +46,7 @@ class SignInPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        // DON'T DO THIS EITHER HOLY FUCKING SHITTO
+        // Don't know why the id increments every time it's pushed to the json array help plox!?!?!!11!!1!
         let data = {
             id: this.state.id,
             username: this.state.username,
@@ -54,7 +62,10 @@ class SignInPage extends Component {
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json());
+            .then(response => response.json())
+            .then(myJSON => {
+                return console.log(myJSON)
+            })
         } else {
             console.log("Form has errors!");
         } 
