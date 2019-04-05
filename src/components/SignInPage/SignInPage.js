@@ -16,6 +16,8 @@ class SignInPage extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // This only logs the login.json after stuff has been mounted
+    // Gonna get removed later
     componentDidMount() {
         fetch('http://localhost:3004/users')
         .then(response => response.json())
