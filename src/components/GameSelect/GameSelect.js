@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './gameSelect.css';
 
 class GameSelect extends Component {
     constructor() {
@@ -11,8 +12,10 @@ class GameSelect extends Component {
     render() {
         return (
             <div className="select-wrapper">
-                <div className>
-
+                <div className="button-group">
+                    <button className="select-button">Classic</button>
+                    <button className="select-button">Spree</button>
+                    <button className="select-button">Clash</button>
                 </div>
             </div>
         )

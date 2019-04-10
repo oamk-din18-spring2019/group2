@@ -57,10 +57,6 @@ class SignUpPage extends Component {
             password: this.state.password
         }
 
-        setTimeout(() => {
-            this.setState({ redirect: true })
-        }, 1000)
-
         // POST a bunch of mock up data to out fake rest api
         if (this.handleValidation()) {
             fetch('http://localhost:3004/users', {
@@ -74,6 +70,10 @@ class SignUpPage extends Component {
             .then(myJSON => {
                 return console.log(myJSON)
             })
+
+            setTimeout(() => {
+                this.setState({ redirect: true })
+            }, 1000)
         } else {
             console.log("Form has errors!");
         } 

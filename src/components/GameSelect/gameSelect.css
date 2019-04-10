@@ -1,0 +1,36 @@
+.select-wrapper {
+    position: fixed;
+    top: 3.5rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.button-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 25%;
+    margin: auto;
+}
+
+.select-button {
+    margin-top: 15px;
+    width: 15rem;
+    background-color: #ff8648;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Montserrat';
+    padding: 17px 0;
+    border: 1px solid #ff8648;
+    border-radius: 3px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.select-button:hover {
+    background-color: #36393f;
+    color: #ff8648;
+}
