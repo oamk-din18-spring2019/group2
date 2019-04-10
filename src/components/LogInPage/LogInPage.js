@@ -12,7 +12,7 @@ class LogInPage extends Component {
     }
 
     handleSubmit() {
-        console.log("monkas");
+        console.log("monkaS");
     }
 
     render() {
@@ -38,7 +38,7 @@ class LogInPage extends Component {
                                 this.setState({ password: event.target.value })}
                         />
                         <br />
-                        <button className="signup-button" onClick={(event) =>this.handleSubmit(event)}>SIGN UP</button>
+                        <button className="signup-button" onClick={(event) =>this.handleSubmit(event)}>LOGIN</button>
                     </form>
                 </div>
             </div>

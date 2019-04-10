@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import './signInPage.css';
+import './signUpPage.css';
 
-class SignInPage extends Component {
+class SignUpPage extends Component {
     constructor() {
         super();
         this.state = {
             id: 0,
             username: '',
             password: '',
-            passwordConfirm: ''
+            passwordConfirm: '',
+            redirect: false
         }
 
         // Bind the function to make `this` work in the callback
@@ -55,6 +57,10 @@ class SignInPage extends Component {
             password: this.state.password
         }
 
+        setTimeout(() => {
+            this.setState({ redirect: true })
+        }, 1000)
+
         // POST a bunch of mock up data to out fake rest api
         if (this.handleValidation()) {
             fetch('http://localhost:3004/users', {
@@ -74,6 +80,11 @@ class SignInPage extends Component {
     }
 
     render() {
+        const redirect = this.state.redirect;
+        if (redirect) { 
+            return <Redirect to="/" /> 
+        }
+
         return (
             <div className="form-wrapper">
                 <div className="form-group">
@@ -113,4 +124,4 @@ class SignInPage extends Component {
     }
 }
 
-export default SignInPage;
+export default SignUpPage;

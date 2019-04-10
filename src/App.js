@@ -4,10 +4,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // Import the components
 import StartingPage from './components/StartingPage/StartingPage';
-import SignInPage from './components/SignInPage/SignInPage';
+import SignInPage from './components/SignUpPage/SignUpPage';
 import Header from './components/Header/Header';
 import Preloader from './components/Preloader/Preloader';
 import LogInPage from './components/LogInPage/LogInPage';
+import GameSelect from './components/GameSelect/GameSelect';
 import Error from './components/Error/Error';
 import './main.css';
 
@@ -21,6 +22,7 @@ class App extends Component {
                     <Route path="/" component={StartingPage} exact />
                     <Route path="/login" component={LogInPage} />
                     <Route path="/signup" component={SignInPage} />
+                    <Route path="/gameselect" component={GameSelect} />
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>
