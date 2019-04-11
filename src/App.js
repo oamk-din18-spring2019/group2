@@ -1,14 +1,18 @@
 // Import all the stuff we need
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 // Import the components
 import StartingPage from './components/StartingPage/StartingPage';
-import SignInPage from './components/SignInPage/SignInPage';
+import SignInPage from './components/SignUpPage/SignUpPage';
 import Header from './components/Header/Header';
 import Preloader from './components/Preloader/Preloader';
 import LogInPage from './components/LogInPage/LogInPage';
+import GameSelect from './components/GameSelect/GameSelect';
+import Game from './components/Game/Game'
 import Error from './components/Error/Error';
+import ClassicMode from './components/ClassicMode/ClassicMode';
+import './main.css';
 
 class App extends Component {
     render() {
@@ -17,9 +21,13 @@ class App extends Component {
                 <Preloader />
                 <Header />
                 <Switch>
-                    <Route path="/" component={StartingPage} exact />
+                    <Route path="/" component={ClassicMode} exact />
                     <Route path="/login" component={LogInPage} />
                     <Route path="/signup" component={SignInPage} />
+                    <Route path="/gameselect" component={GameSelect} />
+                    <Route path="/classicmode" component={ClassicMode} />
+                    <Route path="/gameselect/game" component={Game} exact />
+                    <Route path="/" component={StartingPage} exact />
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>
@@ -27,4 +35,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default App

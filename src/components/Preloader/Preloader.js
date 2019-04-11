@@ -4,7 +4,7 @@ import './preloader.css';
 
 // Initialize the preloader component as a class type component
 class Preloader extends Component {
-    // Need state for the preloader so we need a constructor
+    // Set up state
     constructor() {
         super()
         this.state = {
