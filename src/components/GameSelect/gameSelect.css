@@ -16,8 +16,14 @@
     margin: auto;
 }
 
+.button-group > h1 {
+    font-family: 'Montserrat';
+    color:#D8DEE9;
+    font-size: 3rem;
+}
+
 .select-button {
-    margin-top: 15px;
+    margin-top: 10px;
     width: 15rem;
     background-color: #ff8648;
     text-decoration: none;

@@ -6,7 +6,7 @@ class GameSelect extends Component {
     constructor() {
         super()
         this.state = {
-
+            
         }
     }
 
@@ -14,6 +14,7 @@ class GameSelect extends Component {
         return (
             <div className="select-wrapper">
                 <div className="button-group">
+                    <h1>Game Select</h1>
                     <Link to="/classicmode">
                     <button className="select-button">Classic</button>
                     </Link>
