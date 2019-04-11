@@ -31,12 +31,12 @@
 .btn {
     margin-top: 15px;
     width: 15rem;
-    background-color: #ff8648;
+    background-color: #ff7448;
     text-decoration: none;
     text-align: center;
     font-family: 'Montserrat';
     padding: 17px 0;
-    border: 1px solid #ff8648;
+    border: 1px solid #ff7448;
     border-radius: 3px;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
@@ -44,5 +44,5 @@
 
 .btn:hover {
     background-color: #36393f;
-    color: #ff8648;
+    color: #ff7448;
 }
