@@ -10,6 +10,7 @@ import Preloader from './components/Preloader/Preloader';
 import LogInPage from './components/LogInPage/LogInPage';
 import GameSelect from './components/GameSelect/GameSelect';
 import Error from './components/Error/Error';
+import ClassicMode from './components/ClassicMode/ClassicMode';
 import './main.css';
 
 class App extends Component {
@@ -19,10 +20,11 @@ class App extends Component {
                 <Preloader />
                 <Header />
                 <Switch>
-                    <Route path="/" component={StartingPage} exact />
+                    <Route path="/" component={ClassicMode} exact />
                     <Route path="/login" component={LogInPage} />
                     <Route path="/signup" component={SignInPage} />
                     <Route path="/gameselect" component={GameSelect} />
+                    <Route path="/classicmode" component={ClassicMode} />
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>
