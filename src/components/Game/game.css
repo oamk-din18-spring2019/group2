@@ -1,4 +1,4 @@
-.content-wrapper {
+.game-wrapper {
     position: fixed;
     top: 3.5rem;
     left: 0;
@@ -7,30 +7,40 @@
     z-index: 1;
 }
 
-.monkaS {
+.game-group {
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
-    top: 15%;
+    top: 25%;
     margin: auto;
 }
 
-.logo {
-    height: 16rem;
-    justify-items: center;
-}
-
-.btn-group {
+.question {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    margin-top: 5rem;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid red;
+    width: 600px;
+    height: 100px;
+    margin-bottom: 20px;
 }
 
-.btn {
-    margin-top: 10px;
-    width: 15rem;
+.answer-buttons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 600px;
+    border: 1px solid red;
+}
+
+.answer-button {
+    margin: 2.5px 2.5px;
+    width: 292.5px;
     background-color: #ff7448;
     text-decoration: none;
     text-align: center;
@@ -42,7 +52,14 @@
     transition-duration: 0.4s;
 }
 
-.btn:hover {
+.answer-button:hover {
     background-color: #36393f;
     color: #ff7448;
+}
+
+.timer {
+    width: 650px;
+    height: 20px;
+    margin-top: 20px;
+    border: 1px solid red;
 }

@@ -21,13 +21,12 @@ class App extends Component {
                 <Preloader />
                 <Header />
                 <Switch>
-                    <Route path="/" component={ClassicMode} exact />
-                    <Route path="/login" component={LogInPage} />
-                    <Route path="/signup" component={SignInPage} />
-                    <Route path="/gameselect" component={GameSelect} />
-                    <Route path="/classicmode" component={ClassicMode} />
-                    <Route path="/gameselect/game" component={Game} exact />
                     <Route path="/" component={StartingPage} exact />
+                    <Route path="/login" component={LogInPage} exact />
+                    <Route path="/signup" component={SignInPage} exact />
+                    <Route path="/gameselect" component={GameSelect} exact />
+                    <Route path="/classicmode" component={ClassicMode} exact />
+                    <Route path="/gameselect/game" component={Game} exact />
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>

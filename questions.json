@@ -1,0 +1,36 @@
+{
+    "questions": [
+        {
+            "id": 0,
+            "question": "Most commonly used bleaching agent is",
+            "rightAnswer": "chlorine",
+            "answer1": "alcohol",
+            "answer2": "carbon dioxide",
+            "answer3": "sodium chloride"
+        },
+        {
+            "id": 1,
+            "question": "Liquids transmit pressure equally in all directions. This is known as",
+            "rightAnswer": "Pascal's Law",
+            "answer1": "Boyle-Pascal's Law",
+            "answer2": "Archimedes' Principle",
+            "answer3": "None of the options"
+        },
+        {
+            "id": 2,
+            "question": "National Remote Sensing Agency (NRSA) was setup in",
+            "rightAnswer": "1980",
+            "answer1": "1985",
+            "answer2": "1990",
+            "answer3": "1995"
+        },
+        {
+            "id": 3,
+            "question": "With which sport is the Jules Rimet trophy associated?",
+            "rightAnswer": "Football",
+            "answer1": "Basketball",
+            "answer2": "Hockey",
+            "answer3": "Golf"
+        }
+    ] 
+}
