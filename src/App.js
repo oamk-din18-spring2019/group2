@@ -22,7 +22,7 @@ class App extends Component {
                 <Preloader />
                 <Header />
                 <Switch>
-                    <Route path="/" component={ClassicMode} exact />x
+                    <Route path="/" component={ClassicMode} exact />
                     <Route path="/login" component={LogInPage} />
                     <Route path="/signup" component={SignInPage} />
                     <Route path="/gameselect" component={GameSelect} />
