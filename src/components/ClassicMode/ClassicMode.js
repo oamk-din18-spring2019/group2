@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './classicmode.css';
 import axios from 'axios';
-import * as ReactBootStrap from 'react-bootstrap';
+import Table from 'react-bootstrap/lib/Table';
 import { Link } from 'react-router-dom';
 
 class ClassicMode extends Component {
@@ -28,7 +28,7 @@ class ClassicMode extends Component {
         return (
         <div>
             <div className="Table">
-                <ReactBootStrap.Table striped bordered hover className="blackfont">
+                <Table striped bordered hover className="blackfont">
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -46,10 +46,12 @@ class ClassicMode extends Component {
                     )
                     )}
                 </tbody>
-                </ReactBootStrap.Table>
+                </Table>
             </div>
-            <div>
+            <div className="text-center">
+                <Link to ="/classicgame">
                 <button className="select-button">Start Match</button>
+                </Link>
                 <Link to="/gameselect">
                 <button className="select-button">Go Back</button>
                 </Link>
