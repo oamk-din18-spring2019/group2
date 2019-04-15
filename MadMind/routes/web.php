@@ -14,9 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('profile', function (){
+    //Only authenticated users may enter
+})->middleware('auth');
 
 Route::resource('categories', 'categoriesController');
 Route::resource('matches', 'matchesController');
 // Route::resource('questions', 'questionsController');
 Route::resource('admin/questions', 'adminController');
 Route::resource('users', 'usersController');
+Auth::routes();
+Route::get('/home', 'homeController@index')->name('home');
