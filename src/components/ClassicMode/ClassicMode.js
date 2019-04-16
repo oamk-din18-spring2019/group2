@@ -28,7 +28,7 @@ class ClassicMode extends Component {
         return (
         <div>
             <div className="Table">
-                <Table striped bordered hover className="blackfont">
+                <Table bordered hover condensed className="blackfont">
                 <thead>
                     <tr>
                         <th>Rank</th>
