@@ -23,5 +23,6 @@ Route::resource('matches', 'matchesController');
 // Route::resource('questions', 'questionsController');
 Route::resource('admin/questions', 'adminController');
 Route::resource('users', 'usersController');
+Route::get('api/getQuestions/{n}','apiController@getQuestions');
 Auth::routes();
 Route::get('/home', 'homeController@index')->name('home');
