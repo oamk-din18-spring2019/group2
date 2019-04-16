@@ -28,7 +28,7 @@ class ClassicMode extends Component {
         return (
         <div>
             <div className="Table">
-                <Table striped bordered hover className="blackfont">
+                <Table bordered hover condensed className="blackfont">
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -48,8 +48,10 @@ class ClassicMode extends Component {
                 </tbody>
                 </Table>
             </div>
-            <div>
+            <div className="text-center">
+                <Link to ="/classicgame">
                 <button className="select-button">Start Match</button>
+                </Link>
                 <Link to="/gameselect">
                 <button className="select-button">Go Back</button>
                 </Link>

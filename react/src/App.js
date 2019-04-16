@@ -12,6 +12,7 @@ import GameSelect from './components/GameSelect/GameSelect';
 import Game from './components/Game/Game'
 import Error from './components/Error/Error';
 import ClassicMode from './components/ClassicMode/ClassicMode';
+import ClassicGame from './components/ClassicMode/ClassicGame';
 import './main.css';
 
 class App extends Component {
@@ -34,12 +35,13 @@ class App extends Component {
             <BrowserRouter>
                 <Header />
                 <Switch>
-                    <Route path="/" component={StartingPage} exact />
-                    <Route path="/login" component={LogInPage} exact />
-                    <Route path="/signup" component={SignInPage} exact />
-                    <Route path="/gameselect" component={GameSelect} exact />
-                    <Route path="/classicmode" component={ClassicMode} exact />
+                    <Route path="/" component={ClassicMode} exact />
+                    <Route path="/login" component={LogInPage} />
+                    <Route path="/signup" component={SignInPage} />
+                    <Route path="/gameselect" component={GameSelect} />
+                    <Route path="/classicmode" component={ClassicMode} />
                     <Route path="/gameselect/game" component={Game} exact />
+                    <Route path="/classicgame" component={ClassicGame} />
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>

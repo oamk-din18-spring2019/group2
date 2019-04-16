@@ -1,0 +1,21 @@
+{
+  "name": "xlsx-iterator-upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "exceljs": "^1.9.0",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.0",
+    "mysql2": "^1.6.5",
+    "querystring": "^0.2.0",
+    "request": "^2.88.0",
+    "sequelize": "^5.2.13"
+  }
+}
