@@ -61,3 +61,5 @@ class loginController extends Controller
         Auth::logout();
     }
 }
+
+//derp
