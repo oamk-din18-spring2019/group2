@@ -1,0 +1,24 @@
+.Table {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.blackfont {
+    color: white;
+}
+
+.select-button {
+    margin-top: 10px;
+    width: 15rem;
+    background-color: #ff8648;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Montserrat';
+    padding: 17px 0;
+    border: 1px solid #ff8648;
+    border-radius: 3px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
