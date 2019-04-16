@@ -15,10 +15,23 @@ import ClassicMode from './components/ClassicMode/ClassicMode';
 import './main.css';
 
 class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            isLoading: true
+        }
+    }
+
+    componentDidMount() {
+        this.setState({ isLoading: false })
+    }
+
     render() {
+        if (this.state.isLoading) {
+            return <Preloader />
+        }
         return (
             <BrowserRouter>
-                <Preloader />
                 <Header />
                 <Switch>
                     <Route path="/" component={StartingPage} exact />

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Preloader from '../Preloader/Preloader';
+import Question from './Question';
+import Button from './Buttons';
 import './game.css';
 
 class Game extends Component {
@@ -6,7 +9,8 @@ class Game extends Component {
         super()
         this.state = {
             id: 0,
-            questions: []
+            questions: [],
+            isLoading: true
         }
 
         this.fetchQuestions = this.fetchQuestions.bind(this)
@@ -15,14 +19,12 @@ class Game extends Component {
     fetchQuestions() {
         fetch('http://localhost:3004/questions')
         .then(response => response.json())
-        .then(data => this.setState({ questions: data}))
-        .then(() => {
-            console.log(this.state.questions)
-            return (
-                <div className="question">
-                    <h1>{this.state.questions[0].question}</h1>
-                </div>
-            )
+        .then(data => {
+            console.log(data)
+            this.setState({
+                questions: data, 
+                isLoading: false
+            })
         })
     }
 
@@ -31,17 +33,22 @@ class Game extends Component {
     }
 
     render() {
+        const questionIndex = 0;
+
+        if (this.state.isLoading) {
+            return (
+                <Preloader />
+            )
+        }
         return (
             <div className="game-wrapper">
                 <div className="game-group">
-                    <div className="question">
-                        <h1>monksa</h1>
-                    </div>
+                    <Question question={this.state.questions[questionIndex].question} />
                     <div className="answer-buttons">
-                        <button className="answer-button">Answer 1</button>
-                        <button className="answer-button">Answer 2</button>
-                        <button className="answer-button">Answer 3</button>
-                        <button className="answer-button">Answer 4</button>
+                        <Button answer={this.state.questions[questionIndex].answers.rightAnswer} />
+                        <Button answer={this.state.questions[questionIndex].answers.answer1} />
+                        <Button answer={this.state.questions[questionIndex].answers.answer2} />
+                        <Button answer={this.state.questions[questionIndex].answers.answer3} />
                     </div>
                     <div className="timer">
 
