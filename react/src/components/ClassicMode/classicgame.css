@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-.progress-bar {
+.progress-barr {
     height: 40px;
     width: 25%;
     background: repeating-linear-gradient(
@@ -15,19 +15,19 @@
 );
 }
 
-.filler {
+.fillerr {
     background: linear-gradient(to right, rgb(255, 0, 0), rgb(230, 104, 0));
     height: 100%;
     border-radius:inherit;
 }
 
-.filler2 {
+.fillerr2 {
     background: linear-gradient(to right, rgb(230, 104, 0), rgb(230, 226, 0));
     height: 100%;
     border-radius:inherit;
 }
 
-.filler3 {
+.fillerr3 {
     background: linear-gradient(to right, rgb(230, 226, 0), rgb(73, 230, 0));
     height: 100%;
     border-radius:inherit;

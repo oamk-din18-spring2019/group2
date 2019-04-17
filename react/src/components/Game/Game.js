@@ -11,7 +11,7 @@ class Game extends Component {
         this.state = {
             questions: [],
             isLoading: true,
-            time: 16,
+            time: 1600,
             questionIndex: 0,
             percentage: 100
         }
@@ -37,7 +37,7 @@ class Game extends Component {
 
     // This starts the countdown timer
     startTimer() {
-        this.timer = setInterval(this.countDown, 1000);
+        this.timer = setInterval(this.countDown, 10);
     }
 
     // This is where the actual countdown happens
@@ -60,7 +60,7 @@ class Game extends Component {
         if (time <= 0) {
             clearInterval(this.timer);
             this.setState({
-                time: 16,
+                time: 1600,
                 percentage: 100,
                 questionIndex: questionIndex })
             this.startTimer()
@@ -74,7 +74,7 @@ class Game extends Component {
 
         clearInterval(this.timer)
         this.setState({
-            time: 16,
+            time: 1600,
             percentage: 100,
             questionIndex: questionIndex
         })
@@ -113,6 +113,7 @@ class Game extends Component {
                         <Button onClick={this.handleClick} answer={questions[questionIndex].answers.answer3} />
                     </div>
                     <div className="timer">
+                        {this.state.time}
                         <ProgressBar percentage={percentage} />
                     </div>
                 </div>
