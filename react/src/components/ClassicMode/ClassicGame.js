@@ -2,82 +2,71 @@ import React, { Component } from 'react';
 import './classicgame.css';
 
 class ClassicGame extends Component {
-      constructor() {
-      super();
-      this.state = { 
-          time: {},
-          seconds: 15,
-          percentage: 100
-      };
-      this.timer = 0;
-      this.timeout = null;
-      // this.startTimer = this.startTimer.bind(this);
-      this.countDown = this.countDown.bind(this);
-}
-
-    //function that gets called every time the timer goes to 0.
-    newQuestion() {
-        let timeLeftVar = this.secondsToTime(this.state.seconds);
-        this.setState( {time: {}, seconds: 15});
-        this.setState({percentage: 100})
-        this.setState({ time: timeLeftVar });
-        this.timer = setInterval(this.countDown, 1000);
-    }
-
-    //dunno wtf this is
-    secondsToTime(secs){
-        let hours = Math.floor(secs / (60 * 60));
-
-        let divisor_for_minutes = secs % (60 * 60);
-        let minutes = Math.floor(divisor_for_minutes / 60);
-
-        let divisor_for_seconds = divisor_for_minutes % 60;
-        let seconds = Math.ceil(divisor_for_seconds);
-
-        let obj = {
-            "h": hours,
-            "m": minutes,
-            "s": seconds
+    constructor() {
+        super();
+        this.state = {
+            time: 15000,
+            percentage: 100,
+            percentage2: 100,
+            percentage3: 100
         };
-        return obj;
+
+    this.countDown = this.countDown.bind(this);
+    this.timer = 0;
     }
 
-    //When the page loads (when user starts a match), automatically starts counting down the timer.
-        componentDidMount() {  
-        let timeLeftVar = this.secondsToTime(this.state.seconds);
-        this.setState({ time: timeLeftVar });
-        this.timeout = setTimeout(() => this.startTimer(), 2000);
+    componentDidMount() {
+        this.startTimer();
     }
 
-    //activates the timer for the first time.
     startTimer() {
-        this.timer = setInterval(this.countDown, 1000);
+        this.timer = setInterval(this.countDown, 10);
     }
 
-    // Remove one second, set state so a re-render happens.
     countDown() {
-        let seconds = this.state.seconds - 1;
-        let percentage = this.state.percentage - 6.666666;
-        this.setState({percentage: percentage})
-        this.setState({
-        time: this.secondsToTime(seconds),
-        seconds: seconds,
-      });
+        let time = this.state.time - 10;
+        this.setState({time: time});
 
-    // Check if we're at zero.
-        if (seconds === 0) {
-            this.timeout = setTimeout(() => this.newQuestion(), 1000); 
+        if (time >= 10000) {
+            let percentage = this.state.percentage - (0.0666666 * 3);
+            this.setState({percentage: percentage});
+        }
+
+        if (time <= 10000) {
+            let percentage2 = this.state.percentage2 - (0.0666666 * 3);
+            this.setState({percentage2: percentage2});
+        }
+
+        if (time <= 5000) {
+            let percentage3 = this.state.percentage3 - (0.0666666 * 3);
+            this.setState({percentage3: percentage3});
+        }
+
+        if (time === 0) {
             clearInterval(this.timer);
+            this.newQuestion();
         }
     }
 
+    newQuestion() {
+        let timeLeft = this.state.time;
+        this.setState({time: 15000});
+        this.setState({percentage3: 100});
+        this.setState({percentage2: 100});
+        this.setState({percentage: 100});
+        this.setState({timeLeft});
+        this.timer = setInterval(this.countDown, 10);
+    }
+
+    
+
     render() {
         return(
-          <div>
-            <h2>Time left: </h2>
-            {this.state.time.s}
-            <ProgressBar percentage={this.state.percentage} />
-          </div>
+            <div>
+                <h2>Time left: </h2>
+                {this.state.time}
+                <ProgressBar percentage3={this.state.percentage3} percentage2={this.state.percentage2} percentage={this.state.percentage} />
+            </div>
         );
     }
 }
@@ -85,15 +74,28 @@ class ClassicGame extends Component {
 //Chaning the timer into a bar
 const ProgressBar = (props) => {
     return (
-        <div className="progress-bar">
-        <Filler percentage={props.percentage} />
+        <div className="flexing">
+        <div className="progress-bar"> <Filler percentage3={props.percentage3} /></div>
+        <div className="progress-bar"> <Filler2 percentage2={props.percentage2} /></div>
+        <div className="progress-bar"> <Filler3 percentage={props.percentage} /></div>
         </div>
     )
 }
 
 //Filler for the progress bar
 const Filler = (props) => {
-    return <div className="filler" style={{ width: `${props.percentage}%`}}/>
+    return <div className="filler"
+    style={{ width: `${props.percentage3}%`, }} />
+}
+
+const Filler2 = (props) => {
+    return <div className="filler2"
+    style={{ width: `${props.percentage2}%`, }} />
+}
+
+const Filler3 = (props) => {
+    return <div className="filler3"
+    style={{ width: `${props.percentage}%`, }} />
 }
 
 export default ClassicGame;
