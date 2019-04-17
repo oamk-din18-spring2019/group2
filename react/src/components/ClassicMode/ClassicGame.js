@@ -10,13 +10,15 @@ class ClassicGame extends Component {
             percentage2: 100,
             percentage3: 100
         };
-
+    this.timeout = null;
     this.countDown = this.countDown.bind(this);
     this.timer = 0;
     }
 
     componentDidMount() {
-        this.startTimer();
+        let timeLeft = this.state.time;
+        this.setState({timeLeft});
+        this.timeout = setTimeout(() => this.startTimer(), 2000);
     }
 
     startTimer() {
@@ -43,8 +45,8 @@ class ClassicGame extends Component {
         }
 
         if (time === 0) {
+            this.timeout = setTimeout(() => this.newQuestion(), 1000); 
             clearInterval(this.timer);
-            this.newQuestion();
         }
     }
 
@@ -70,7 +72,6 @@ class ClassicGame extends Component {
         );
     }
 }
-
 //Chaning the timer into a bar
 const ProgressBar = (props) => {
     return (
@@ -85,17 +86,17 @@ const ProgressBar = (props) => {
 //Filler for the progress bar
 const Filler = (props) => {
     return <div className="filler"
-    style={{ width: `${props.percentage3}%`, }} />
+    style={{ width: `${props.percentage3}%`}} />
 }
 
 const Filler2 = (props) => {
     return <div className="filler2"
-    style={{ width: `${props.percentage2}%`, }} />
+    style={{ width: `${props.percentage2}%`}} />
 }
 
 const Filler3 = (props) => {
     return <div className="filler3"
-    style={{ width: `${props.percentage}%`, }} />
+    style={{ width: `${props.percentage}%`}} />
 }
 
 export default ClassicGame;
