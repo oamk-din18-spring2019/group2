@@ -1,15 +1,34 @@
+.flexing {
+    display: flex;
+    justify-content: center;
+}
+
 .progress-bar {
-    position: relative;
-    height: 30px;
-    width: 80%;
-    border-radius: 5px;
-    border: 1px solid #333;
-    background-color: #202225;
+    height: 40px;
+    width: 25%;
+    background: repeating-linear-gradient(
+    to right,
+  #202225,
+  #202225 10px,
+  #36393f 10px,
+  #36393f 20px
+);
 }
 
 .filler {
-    background: #dddad0;
+    background: linear-gradient(to right, rgb(255, 0, 0), rgb(230, 104, 0));
     height: 100%;
     border-radius:inherit;
-    transition: width .5s ease-in;
+}
+
+.filler2 {
+    background: linear-gradient(to right, rgb(230, 104, 0), rgb(230, 226, 0));
+    height: 100%;
+    border-radius:inherit;
+}
+
+.filler3 {
+    background: linear-gradient(to right, rgb(230, 226, 0), rgb(73, 230, 0));
+    height: 100%;
+    border-radius:inherit;
 }
