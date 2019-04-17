@@ -68,7 +68,7 @@ class Game extends Component {
         }
     }
 
-    // This will handle the button clicks
+    // This will handle th button clicks
     handleClick() {
         let questionIndex = this.state.questionIndex + 1
 
