@@ -39,8 +39,8 @@ class App extends Component {
                     <Route path="/login" component={LogInPage} exact />
                     <Route path="/signup" component={SignInPage} exact />
                     <Route path="/gameselect" component={GameSelect} exact />
-                    <Route path="/classicmode" component={ClassicMode} exact />
-                    <Route path="/gameselect/game" component={Game} exact />
+                    <Route path="/classic" component={ClassicMode} exact />
+                    <Route path="/classic/game" component={Game} exact />
                     <Route path="/classicgame" component={ClassicGame} exact />
                     <Route component={Error} />
                 </Switch>
