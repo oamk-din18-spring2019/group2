@@ -27,6 +27,7 @@ class adminController extends Controller
             'option1' => ['required', 'min:3'],
             'option2' => ['required', 'min:3'],
             'option3' => ['required', 'min:3'],
+            'option4' => ['required', 'min:3'],
         ]);
         questions::create($atributes);
         // $question->title = request('title');
@@ -47,7 +48,7 @@ class adminController extends Controller
     }
     public function update(questions $question)
     {
-        $question->update(request(['categoryTitle', 'question', 'correctAnswer', 'option1', 'option2', 'option3']));
+        $question->update(request(['categoryTitle', 'question', 'correctAnswer', 'option1', 'option2', 'option3', 'option4']));
         // $question->title = request('title');
         // $question->description = request('description');
         // $question->save();
