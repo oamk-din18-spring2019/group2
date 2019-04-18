@@ -22,10 +22,7 @@ class CreateQuestionsTable extends Migration
             $table->text('option1')->nullable();
             $table->text('option2')->nullable();
             $table->text('option3')->nullable();
-            $table->integer('correctGuesses')->nullable();
-            $table->integer('option1Guesses')->nullable();
-            $table->integer('option2Guesses')->nullable();
-            $table->integer('option3Guesses')->nullable();
+            $table->text('option4')->nullable();
             $table->timestamps();
         });
     }
