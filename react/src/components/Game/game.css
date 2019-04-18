@@ -20,11 +20,18 @@
     display: flex;
     align-items: center;
     text-align: center;
+    color: #acb1ba;
     justify-content: center;
-    border: 1px solid red;
+    border: 1px solid #202225;
+    border-radius: 10px;
+    background: #202225;
     width: 600px;
     height: 100px;
     margin-bottom: 20px;
+}
+
+.question > p {
+    margin: 0;
 }
 
 .answer-buttons {
@@ -35,7 +42,6 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 600px;
-    border: 1px solid red;
 }
 
 .answer-button {
@@ -67,12 +73,27 @@
 .progress-bar {
     height: 100%;
     width: 100%;
-    background: black;
+    background: #202225;
+    border-radius: 10px;
 }
 
 .filler {
-    background: white;
+    background: #ff7448;
     height: 100%;
     width: 100%;
     border-radius: inherit;
+}
+
+.points {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 5px;
+    text-transform: uppercase;
+    color: #acb1ba;
+    border: 1px solid #202225;
+    border-radius: 10px;
+    background: #202225;
 }

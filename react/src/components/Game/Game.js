@@ -13,7 +13,9 @@ class Game extends Component {
             isLoading: true,
             time: 1600,
             questionIndex: 0,
-            percentage: 100
+            percentage: 100,
+            id: '',
+            correctAnswer: 0
         }
 
         // Binding functions
@@ -29,7 +31,7 @@ class Game extends Component {
         .then(data => {
             console.log(data)
             this.setState({
-                questions: data, 
+                questions: data,
                 isLoading: false
             })
         })
@@ -46,7 +48,6 @@ class Game extends Component {
         let time = this.state.time - 1
         let questionIndex = this.state.questionIndex + 1
         let percentage = this.state.percentage - (this.state.percentage/this.state.time)
-        console.log(percentage + '%')
 
         // Set new state for time and percentage
         this.setState({
@@ -68,9 +69,16 @@ class Game extends Component {
         }
     }
 
-    // This will handle th button clicks
-    handleClick() {
+    // This will handle the button clicks
+    handleClick(event) {
         let questionIndex = this.state.questionIndex + 1
+        let correctAnswer = this.state.correctAnswer + 1
+
+        if (event.target.id === 'correct') {
+            this.setState({
+                correctAnswer: correctAnswer
+            })
+        }
 
         clearInterval(this.timer)
         this.setState({
@@ -95,7 +103,7 @@ class Game extends Component {
     }
 
     render() {
-        // Just shortening this.state.whatever to something prettier
+        // Just shortening state to something prettier
         const {questions, questionIndex, percentage} = this.state
 
         // Check if the page has finished loading
@@ -107,14 +115,16 @@ class Game extends Component {
                 <div className="game-group">
                     <Question question={questions[questionIndex].question} />
                     <div className="answer-buttons">
-                        <Button onClick={this.handleClick} answer={questions[questionIndex].answers.rightAnswer} />
-                        <Button onClick={this.handleClick} answer={questions[questionIndex].answers.answer1} />
-                        <Button onClick={this.handleClick} answer={questions[questionIndex].answers.answer2} />
-                        <Button onClick={this.handleClick} answer={questions[questionIndex].answers.answer3} />
+                        <Button onClick={this.handleClick} id='correct' answer={questions[questionIndex].answers.rightAnswer} />
+                        <Button onClick={this.handleClick} id='incorrect' answer={questions[questionIndex].answers.answer1} />
+                        <Button onClick={this.handleClick} id='incorrect' answer={questions[questionIndex].answers.answer2} />
+                        <Button onClick={this.handleClick} id='incorrect' answer={questions[questionIndex].answers.answer3} />
                     </div>
                     <div className="timer">
-                        {this.state.time}
                         <ProgressBar percentage={percentage} />
+                    </div>
+                    <div className="points">
+                        {this.state.correctAnswer + '/' + this.state.questions.length}
                     </div>
                 </div>
             </div>

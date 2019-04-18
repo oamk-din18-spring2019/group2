@@ -15,7 +15,7 @@ class GameSelect extends Component {
             <div className="select-wrapper">
                 <div className="button-group">
                     <h1>Game Select</h1>
-                    <Link to="/classicmode">
+                    <Link to="/classic">
                     <button className="select-button">Classic</button>
                     </Link>
                     <button className="select-button">Spree</button>
