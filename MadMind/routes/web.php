@@ -18,6 +18,10 @@ Route::get('profile', function (){
     //Only authenticated users may enter
 })->middleware('auth');
 
+Route::get('/admin/questions', ['middleware' => 'AdminMiddleware', function() {
+    return view('admin/questions');
+}]);
+
 Route::resource('categories', 'categoriesController');
 Route::resource('matches', 'matchesController');
 // Route::resource('questions', 'questionsController');
