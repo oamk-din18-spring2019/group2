@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './classicgame.css';
-
 class ClassicGame extends Component {
     constructor() {
         super();
@@ -76,26 +74,26 @@ class ClassicGame extends Component {
 const ProgressBar = (props) => {
     return (
         <div className="flexing">
-        <div className="progress-bar"> <Filler percentage3={props.percentage3} /></div>
-        <div className="progress-bar"> <Filler2 percentage2={props.percentage2} /></div>
-        <div className="progress-bar"> <Filler3 percentage={props.percentage} /></div>
+        <div className="progress-barr"> <Filler percentage3={props.percentage3} /></div>
+        <div className="progress-barr"> <Filler2 percentage2={props.percentage2} /></div>
+        <div className="progress-barr"> <Filler3 percentage={props.percentage} /></div>
         </div>
     )
 }
 
 //Filler for the progress bar
 const Filler = (props) => {
-    return <div className="filler"
+    return <div className="fillerr"
     style={{ width: `${props.percentage3}%`}} />
 }
 
 const Filler2 = (props) => {
-    return <div className="filler2"
+    return <div className="fillerr2"
     style={{ width: `${props.percentage2}%`}} />
 }
 
 const Filler3 = (props) => {
-    return <div className="filler3"
+    return <div className="fillerr3"
     style={{ width: `${props.percentage}%`}} />
 }
 
