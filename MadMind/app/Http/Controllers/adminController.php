@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\questions;
 class adminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
 
     public function index()
     {
