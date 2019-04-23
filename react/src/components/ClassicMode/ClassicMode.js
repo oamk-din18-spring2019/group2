@@ -37,7 +37,7 @@ class ClassicMode extends Component {
             return <Preloader />
         }
         return (
-        <div>
+        <div className="mode-wrapper">
             <div className="Table">
                 <Table bordered hover condensed className="blackfont">
                 <thead>
