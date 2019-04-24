@@ -59,17 +59,17 @@ class SignUpPage extends Component {
 
     // POST a bunch of mock up data to out fake rest api
     if (this.handleValidation()) {
-      fetch("joelmaenpaa.com/register", {
+      fetch("http://joelmaenpaa.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
-      })
-        .then(response => response.json())
-        .then(myJSON => {
-          return console.log(myJSON);
-        });
+      });
+      // .then(response => response.json())
+      // .then(myJSON => {
+      //   return console.log(myJSON);
+      // });
 
       setTimeout(() => {
         this.setState({ redirect: true });
