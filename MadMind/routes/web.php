@@ -14,19 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('profile', function (){
+Route::get('profile', function () {
     //Only authenticated users may enter
 })->middleware('auth');
 
-Route::get('/admin/questions', ['middleware' => 'AdminMiddleware', function() {
+Route::get('/admin/questions', ['middleware' => 'AdminMiddleware', function () {
     return view('admin/questions');
 }]);
 
 Route::resource('categories', 'categoriesController');
 Route::resource('matches', 'matchesController');
-// Route::resource('questions', 'questionsController');
 Route::resource('admin/questions', 'adminController');
 Route::resource('users', 'usersController');
-Route::get('api/getQuestions/{n}','apiController@getQuestions');
-Auth::routes();
+Route::get('api/getQuestions/{n}', 'apiController@getQuestions');
 Route::get('/home', 'homeController@index')->name('home');
+Auth::routes();

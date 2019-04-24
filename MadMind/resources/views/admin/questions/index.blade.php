@@ -12,7 +12,7 @@
     @foreach ($questions as $questions)
         <li>
             <a href="{{ url('admin/questions') }}/{{ $questions->id }}">
-                {{ $questions->categoryTitle }}
+                {{ $questions->question }}
             </a>
         </li>
     @endforeach

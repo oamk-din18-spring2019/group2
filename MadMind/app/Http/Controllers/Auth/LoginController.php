@@ -39,11 +39,11 @@ class loginController extends Controller
     {
         return 'username';
     }
-    
+
     public function authenticate(Request $request)
-    {  
+    {
         $credentials = $request->only('username', 'password');
-        
+
         if (Auth::attempt($credentials)) {
             // Authentication passed...
             return redirect()->intended('dashboard');

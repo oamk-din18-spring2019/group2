@@ -70,5 +70,3 @@ class registerController extends Controller
         ]);
     }
 }
-//drup
-    //bruh
