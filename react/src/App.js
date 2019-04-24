@@ -36,7 +36,7 @@ class App extends Component {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route path="/" component={Game} exact />
+          <Route path="/" component={StartingPage} exact />
           <Route path="/login" component={LogInPage} exact />
           <Route path="/signup" component={SignInPage} exact />
           <Route path="/gameselect" component={GameSelect} exact />
