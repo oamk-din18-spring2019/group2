@@ -21,8 +21,8 @@ class profileController extends Controller
     }
     public function __construct()
     {
-    $this->middleware('auth');
-    $this->middleware('auth:api');
+        $this->middleware('auth');
+        $this->middleware('auth:api');
     }
     /**
      * Get the path the user should be redirected to.
@@ -34,5 +34,4 @@ class profileController extends Controller
     {
         return route('login');
     }
-
 }

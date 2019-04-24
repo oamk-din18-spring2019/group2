@@ -8,8 +8,6 @@
     <div class="content">{{ $question->option1 }}</div>
     <div class="content">{{ $question->option2 }}</div>
     <div class="content">{{ $question->option3 }}</div>
-    <div class="content">{{ $question->option4 }}</div>
-
     <p>
         <a href=" {{ url('admin/questions') }}/{{ $question->id  }}/edit">Edit</a>
     </p>

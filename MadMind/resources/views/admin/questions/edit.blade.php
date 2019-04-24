@@ -43,12 +43,6 @@
             </div>
         </div>
         <div class="field">
-            <label class="label" for="optins3">option4</label>
-            <div class="control">
-                <textarea class="textarea" name="option4" placeholder="">{{ $question->option4 }}</textarea>
-            </div>
-        </div>
-        <div class="field">
             <div class="control">
                 <button type="submit" class="button">Update question</button>
             </div>

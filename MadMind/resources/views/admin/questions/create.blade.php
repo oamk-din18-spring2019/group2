@@ -31,9 +31,6 @@
             <input name="option3" placeholder="option 3" >{{ old('option3') }}
         </div>
         <div>
-            <input name="option4" placeholder="option 4" >{{ old('option4') }}
-        </div>
-        <div>
             <button type="submit">Create question</button>
         </div>
         @if ($errors->any())

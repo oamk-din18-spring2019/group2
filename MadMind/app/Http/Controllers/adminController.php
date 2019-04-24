@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\questions;
+
 class adminController extends Controller
 {
     public function __construct()
@@ -17,7 +18,7 @@ class adminController extends Controller
         $questions = questions::all();
         return view('admin/questions.index', compact('questions'));
     }
-    
+
     public function create()
     {
         return view('admin/questions.create');
@@ -32,12 +33,8 @@ class adminController extends Controller
             'option1' => ['required', 'min:3'],
             'option2' => ['required', 'min:3'],
             'option3' => ['required', 'min:3'],
-            'option4' => ['required', 'min:3'],
         ]);
         questions::create($atributes);
-        // $question->title = request('title');
-        // $question->description = request('description');
-        // $question->save();
         return redirect('admin/questions');
     }
 
@@ -49,14 +46,10 @@ class adminController extends Controller
     public function edit(questions $question) //example.com/questions/1/edit
     {
         return view('admin/questions.edit', compact('question'));
-
     }
     public function update(questions $question)
     {
-        $question->update(request(['categoryTitle', 'question', 'correctAnswer', 'option1', 'option2', 'option3', 'option4']));
-        // $question->title = request('title');
-        // $question->description = request('description');
-        // $question->save();
+        $question->update(request(['categoryTitle', 'question', 'correctAnswer', 'option1', 'option2', 'option3']));
         return redirect('admin/questions');
     }
 
