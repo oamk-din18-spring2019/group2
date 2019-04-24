@@ -16,20 +16,32 @@ import ClassicGame from './components/ClassicMode/ClassicGame';
 import './main.css';
 
 class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            isLoading: true
+        }
+    }
+
+    componentDidMount() {
+        this.setState({ isLoading: false })
+    }
+
     render() {
+        if (this.state.isLoading) {
+            return <Preloader />
+        }
         return (
             <BrowserRouter>
-                <Preloader />
                 <Header />
                 <Switch>
-                    <Route path="/" component={ClassicMode} exact />
-                    <Route path="/login" component={LogInPage} />
-                    <Route path="/signup" component={SignInPage} />
-                    <Route path="/gameselect" component={GameSelect} />
-                    <Route path="/classicmode" component={ClassicMode} />
-                    <Route path="/gameselect/game" component={Game} exact />
-                    <Route path="/classicgame" component={ClassicGame} />
-                    <Route path="/" component={StartingPage} exact />
+                    <Route path="/" component={Game} exact />
+                    <Route path="/login" component={LogInPage} exact />
+                    <Route path="/signup" component={SignInPage} exact />
+                    <Route path="/gameselect" component={GameSelect} exact />
+                    <Route path="/classic" component={ClassicMode} exact />
+                    <Route path="/classic/game" component={Game} exact />
+                    <Route path="/classicgame" component={ClassicGame} exact />
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>

@@ -26,6 +26,6 @@ Route::resource('categories', 'categoriesController');
 Route::resource('matches', 'matchesController');
 Route::resource('admin/questions', 'adminController');
 Route::resource('users', 'usersController');
-Route::get('api/getQuestions/{n}', 'apiController@getQuestions');
+Route::get('api/getQuestions/{n}',array('middleware'=> 'cors', 'uses' => 'apiController@getQuestions'));
 Route::get('/home', 'homeController@index')->name('home');
 Auth::routes();

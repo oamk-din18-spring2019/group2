@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import './classicmode.css';
+import Preloader from '../Preloader/Preloader';
 import axios from 'axios';
 import Table from 'react-bootstrap/lib/Table';
 import { Link } from 'react-router-dom';
 
 class ClassicMode extends Component {
-
-    state = {
-        top10Players: []
+    constructor() {
+        super()
+        this.state = {
+            top10Players: [],
+            isLoading: true
+        }
     }
 
     getData(url, stateName){
     axios.get(url)
     .then(({ data }) => {
-        this.setState({ [stateName]: data });
+        this.setState({
+            [stateName]: data,
+            isLoading: false
+        });
         console.log(this.state.top10Players);
     })
     }
@@ -24,11 +31,15 @@ class ClassicMode extends Component {
     
 
     render() {
-        const {top10Players} = this.state;
+        const {top10Players, isLoading} = this.state;
+
+        if (isLoading) {
+            return <Preloader />
+        }
         return (
-        <div>
+        <div className="mode-wrapper">
             <div className="Table">
-                <Table striped bordered hover className="blackfont">
+                <Table bordered hover condensed className="blackfont">
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -49,7 +60,7 @@ class ClassicMode extends Component {
                 </Table>
             </div>
             <div className="text-center">
-                <Link to ="/classicgame">
+                <Link to ="/classic/game">
                 <button className="select-button">Start Match</button>
                 </Link>
                 <Link to="/gameselect">

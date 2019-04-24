@@ -1,7 +1,10 @@
+.mode-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .Table {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 10px;
 }
 
@@ -10,7 +13,7 @@
 }
 
 .select-button {
-    margin-top: 10px;
+    margin: 2.5px;
     width: 15rem;
     background-color: #ff8648;
     text-decoration: none;
