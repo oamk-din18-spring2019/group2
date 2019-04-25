@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../Preloader/Preloader";
 import Question from "./Question";
 import Button from "./Buttons";
 import ProgressBar from "./ProgressBar";
-import "./game.css";
+import "../game.css";
 import { Redirect } from "react-router-dom";
 
 class Game extends Component {
@@ -152,7 +152,6 @@ class Game extends Component {
 
   render() {
     // Just shortening state to something prettier
-
     const { questions, questionIndex, percentage } = this.state;
 
     // Check if the page has finished loading
