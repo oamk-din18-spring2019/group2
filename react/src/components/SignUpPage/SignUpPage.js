@@ -60,13 +60,16 @@ class SignUpPage extends Component {
 
     // POST a bunch of mock up data to out fake rest api
     if (this.handleValidation()) {
-      const url = "http://127.0.0.1:8000/users/register/"+`${data.username}-${data.password}`;
+      const url =
+        "http://joelmaenpaa.com/users/register/" +
+        `${data.username}-${data.password}`;
       console.log(url);
       fetch(url)
-      .then(response => response.json())
-      .then(myJSON => {
-        console.log(myJSON);
-      }).catch(err => console.log(err));
+        .then(response => response.json())
+        .then(myJSON => {
+          console.log(myJSON);
+        })
+        .catch(err => console.log(err));
 
       setTimeout(() => {
         this.setState({ redirect: true });
