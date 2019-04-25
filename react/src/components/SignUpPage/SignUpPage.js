@@ -10,7 +10,7 @@ class SignUpPage extends Component {
       id: 0,
       username: "",
       password: "",
-      password_confirmation: "",
+      passwordConfirm: "",
       redirect: false
     };
 
@@ -52,24 +52,21 @@ class SignUpPage extends Component {
 
     // Don't know why the id increments every time it's pushed to the json array help plox!?!?!!11!!1!
     let data = {
-      id: this.state.id,
+      // id: this.state.id,
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      passwordConfirm: this.state.passwordConfirm
     };
 
     // POST a bunch of mock up data to out fake rest api
     if (this.handleValidation()) {
-      fetch("http://joelmaenpaa.com/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-      // .then(response => response.json())
-      // .then(myJSON => {
-      //   return console.log(myJSON);
-      // });
+      const url = "http://127.0.0.1:8000/users/register/"+`${data.username}-${data.password}`;
+      console.log(url);
+      fetch(url)
+      .then(response => response.json())
+      .then(myJSON => {
+        console.log(myJSON);
+      }).catch(err => console.log(err));
 
       setTimeout(() => {
         this.setState({ redirect: true });
