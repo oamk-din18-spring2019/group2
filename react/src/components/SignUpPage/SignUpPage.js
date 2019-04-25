@@ -61,7 +61,7 @@ class SignUpPage extends Component {
     // POST a bunch of mock up data to out fake rest api
     if (this.handleValidation()) {
       const url =
-        "http://joelmaenpaa.com/users/register/" +
+        "http://joelmaenpaa.com:8000/users/register/" +
         `${data.username}-${data.password}`;
       console.log(url);
       fetch(url)
