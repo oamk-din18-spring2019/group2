@@ -35,7 +35,12 @@
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 }
+
 .select-button:hover {
     background-color: #36393f;
     color: #ff8648;
+}
+
+.select-button:focus {
+    outline: none;
 }
