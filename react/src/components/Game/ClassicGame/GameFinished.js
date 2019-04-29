@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./gamefinished.css";
-import Preloader from "../Preloader/Preloader";
+import "../gamefinished.css";
+import Preloader from "../../Preloader/Preloader";
 import axios from "axios";
 import Table from "react-bootstrap/lib/Table";
 import { Link } from "react-router-dom";

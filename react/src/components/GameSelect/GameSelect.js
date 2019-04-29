@@ -16,12 +16,14 @@ class GameSelect extends Component {
                 <div className="button-group">
                     <h1>Game Select</h1>
                     <Link to="/classic">
-                        <button className="select-button">Classic</button>
+                        <button className="game-button">Classic</button>
                     </Link>
                     <Link to="/spree">
-                        <button className="select-button">Spree</button>
+                        <button className="game-button">Spree</button>
                     </Link>
-                    <button className="select-button">Infinite</button>
+                    <Link to="/infinite">
+                        <button className="game-button">Infinite</button>
+                    </Link>
                 </div>
             </div>
         )
