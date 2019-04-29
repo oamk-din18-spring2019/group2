@@ -53,6 +53,11 @@ class GameFinished extends Component {
                   <td>{row.email}</td>
                 </tr>
               ))}
+              <tr className="playerRank">
+                <td>asd </td>
+                <td> asddas</td>
+                <td> adsdasds</td>
+              </tr>
             </tbody>
           </Table>
         </div>
