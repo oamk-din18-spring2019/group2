@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class UsersController extends Controller
 {
@@ -27,24 +28,22 @@ class UsersController extends Controller
         
         return json_encode($d);
 
-
-
-        // return json_encode($n);
-
-
-
-
-
-        // $username = $data->username;
-        // $password = $data->password;
-        // $passwordConfirm  = $data->passwordConfirm;
-
-        // if($password == $passwordConfirm){
-        //     return User::create([
-        //         'username' => $username,
-        //         'password' => Hash::make($password)
-        //     ]);
-        // }
        
     }
+public function login($n){
+        $data = explode('-',$n);
+        $username = $data[0];
+        $password = $data[1];
+
+        $credentials = array("username"=>$username,"password"=>$password);
+
+        if (Auth::attempt($credentials)) {
+            
+            $user = DB::table('users')->where('username', $username)->first();
+            return $user;
+        }else{
+            return null;
+        }
+ }
+  
 }
