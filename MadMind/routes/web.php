@@ -25,8 +25,10 @@ Route::get('/admin/questions', ['middleware' => 'AdminMiddleware', function () {
 Route::resource('categories', 'categoriesController');
 Route::resource('matches', 'matchesController');
 Route::resource('admin/questions', 'adminController');
-Route::resource('users', 'usersController');
+Route::get('users/register/{n}', array('middleware'=> 'cors', 'uses' => 'UsersController@index'));
+
+// Route::post('users/register','UsersController');
 Route::get('api/getQuestions/{n}',array('middleware'=> 'cors', 'uses' => 'apiController@getQuestions'));
-Route::post('api/create',array('middleware'=> 'cors', 'uses' => 'Auth/RegisterController@create'));
+Route::post('api/create',array('middleware'=> 'cors', 'uses' => 'registerController@create'));
 Route::get('/home', 'homeController@index')->name('home');
-Auth::routes();
+Auth::routes(['register' => false]);
