@@ -12,11 +12,12 @@ class Game extends Component {
     this.state = {
       questions: [],
       isLoading: true,
-      time: 60000,
+      time: 6000,
       questionIndex: 0,
       percentage: 100,
       id: "",
       correctAnswer: 0,
+      questionsAnswered: 0,
       points: 0,
       gameRunning: false
     };
@@ -37,9 +38,9 @@ class Game extends Component {
 
   // Fetch the questions from database
   fetchQuestions() {
-    let numberOfQuestions = 15;
+    let numberOfQuestions = 120000;
     let url =
-      "http://joelmaenpaa.com/api/getQuestions/" + numberOfQuestions.toString();
+      "http://joelmaenpaa.com:8000/api/getQuestions/" + numberOfQuestions.toString();
     console.log(url);
     fetch(url)
       .then(response => response.json())
@@ -81,7 +82,6 @@ class Game extends Component {
   countDown() {
     // Declare some variables so we don't have to use a function to set state
     let time = this.state.time - 1;
-    let questionIndex = this.state.questionIndex;
     let percentage =
       this.state.percentage - this.state.percentage / this.state.time;
 
@@ -91,22 +91,8 @@ class Game extends Component {
       percentage: percentage
     });
 
-    if (questionIndex === 14 && time <= 0) {
-      this.setState({ gameRunning: false });
-    }
-
-    // If time is 0 or less than 0 then clear the interval,
-    // set state of time back to 15 seconds
-    // and update the question
     if (time <= 0) {
-      clearInterval(this.timer);
-      this.setState({
-        time: 1600,
-        percentage: 100,
-        questionIndex: questionIndex + 1
-      });
-      this.startTimer();
-      console.log("Question #" + (questionIndex + 1));
+      this.setState({ gameRunning: false });
     }
   }
 
@@ -114,6 +100,7 @@ class Game extends Component {
   handleClick(event) {
     let questionIndex = this.state.questionIndex;
     let correctAnswer = this.state.correctAnswer + 1;
+    let questionsAnswered = this.state.questionsAnswered + 1;
     let points = this.state.points;
 
     if (event.target.id === "correct") {
@@ -122,18 +109,11 @@ class Game extends Component {
         points: points + 10
       });
     }
-
-    if (questionIndex === 15) {
-      this.setState({ gameRunning: false });
-    }
-
-    clearInterval(this.timer);
     this.setState({
-      time: 1600,
-      percentage: 100,
-      questionIndex: questionIndex + 1
+      questionIndex: questionIndex + 1,
+      questionsAnswered: questionsAnswered
     });
-    this.startTimer();
+
     console.log("Question #" + (questionIndex + 1));
     console.log("points: " + this.state.points);
   }
@@ -179,7 +159,7 @@ class Game extends Component {
               <ProgressBar percentage={percentage} />
             </div>
             <div className="points">
-              {this.state.correctAnswer + "/" + this.state.questions.length}
+              {this.state.correctAnswer + "/" + this.state.questionsAnswered}
             </div>
           </div>
         </div>

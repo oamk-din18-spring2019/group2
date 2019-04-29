@@ -30,6 +30,10 @@
     transition-duration: 0.4s;
 }
 
+.signup-input:focus {
+    outline: none;
+}
+
 .signup-button {
     margin-top: 15px;
     width: 15rem;
@@ -47,4 +51,8 @@
 .signup-button:hover {
     background-color: #36393f;
     color: #ff7448;
+}
+
+.signup-button:focus {
+    outline: none;
 }

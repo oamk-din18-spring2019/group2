@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Preloader from "../../Preloader/Preloader";
 import Question from "./Question";
 import Button from "./Buttons";
-import ProgressBar from "./ProgressBar";
 import "../game.css";
 import { Redirect } from "react-router-dom";
 
@@ -12,18 +11,17 @@ class Game extends Component {
     this.state = {
       questions: [],
       isLoading: true,
-      time: 1600,
       questionIndex: 0,
-      percentage: 100,
       id: "",
       correctAnswer: 0,
+      questionsAnswered: 0,
       points: 0,
-      gameRunning: false
+      gameRunning: false,
+      wrongAnswer: 0
     };
 
     // Binding functions
     this.fetchQuestions = this.fetchQuestions.bind(this);
-    this.countDown = this.countDown.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -37,7 +35,7 @@ class Game extends Component {
 
   // Fetch the questions from database
   fetchQuestions() {
-    let numberOfQuestions = 15;
+    let numberOfQuestions = 120000;
     let url =
       "http://joelmaenpaa.com:8000/api/getQuestions/" + numberOfQuestions.toString();
     console.log(url);
@@ -72,48 +70,11 @@ class Game extends Component {
       .catch(e => console.log("Failed to fetch questions", e));
   }
 
-  // This starts the countdown timer
-  startTimer() {
-    this.timer = setInterval(this.countDown, 10);
-  }
-
-  // This is where the actual countdown happens
-  countDown() {
-    // Declare some variables so we don't have to use a function to set state
-    let time = this.state.time - 1;
-    let questionIndex = this.state.questionIndex;
-    let percentage =
-      this.state.percentage - this.state.percentage / this.state.time;
-
-    // Set new state for time and percentage
-    this.setState({
-      time: time,
-      percentage: percentage
-    });
-
-    if (questionIndex === 14 && time <= 0) {
-      this.setState({ gameRunning: false });
-    }
-
-    // If time is 0 or less than 0 then clear the interval,
-    // set state of time back to 15 seconds
-    // and update the question
-    if (time <= 0) {
-      clearInterval(this.timer);
-      this.setState({
-        time: 1600,
-        percentage: 100,
-        questionIndex: questionIndex + 1
-      });
-      this.startTimer();
-      console.log("Question #" + (questionIndex + 1));
-    }
-  }
-
   // This will handle the button clicks
   handleClick(event) {
     let questionIndex = this.state.questionIndex;
     let correctAnswer = this.state.correctAnswer + 1;
+    let questionsAnswered = this.state.questionsAnswered + 1;
     let points = this.state.points;
 
     if (event.target.id === "correct") {
@@ -122,18 +83,21 @@ class Game extends Component {
         points: points + 10
       });
     }
-
-    if (this.state.questionIndex === 14) {
-      this.setState({ gameRunning: false });
+    if (event.target.id === "incorrect") {
+      this.setState({
+        wrongAnswer: this.state.wrongAnswer + 1
+      })
     }
-
-    clearInterval(this.timer);
+    if (this.state.wrongAnswer === 3) {
+      this.setState({
+        gameRunning: false
+      })
+    }
     this.setState({
-      time: 1600,
-      percentage: 100,
-      questionIndex: questionIndex + 1
+      questionIndex: questionIndex + 1,
+      questionsAnswered: questionsAnswered
     });
-    this.startTimer();
+
     console.log("Question #" + (questionIndex + 1));
     console.log("points: " + this.state.points);
   }
@@ -142,17 +106,11 @@ class Game extends Component {
   // This also starts the timer
   componentDidMount() {
     this.fetchQuestions();
-    this.startTimer();
-  }
-
-  // Stop the timer if the user is a monkey
-  componentWillUnmount() {
-    clearInterval(this.timer);
   }
 
   render() {
     // Just shortening state to something prettier
-    const { questions, questionIndex, percentage } = this.state;
+    const { questions, questionIndex } = this.state;
 
     // Check if the page has finished loading
     if (this.state.isLoading) {
@@ -175,11 +133,11 @@ class Game extends Component {
                 );
               })}
             </div>
-            <div className="timer">
-              <ProgressBar percentage={percentage} />
+            <div className="wrong-answers">
+              {"Wrong Answers: " + this.state.wrongAnswer + "/3"}
             </div>
             <div className="points">
-              {this.state.correctAnswer + "/" + this.state.questions.length}
+              {this.state.correctAnswer + "/" + this.state.questionsAnswered}
             </div>
           </div>
         </div>

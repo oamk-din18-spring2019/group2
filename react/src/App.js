@@ -9,7 +9,9 @@ import Header from "./components/Header/Header";
 import Preloader from "./components/Preloader/Preloader";
 import LogInPage from "./components/LogInPage/LogInPage";
 import GameSelect from "./components/GameSelect/GameSelect";
-import Game from "./components/Game/ClassicGame/Game";
+import Classic from "./components/Game/ClassicGame/Game";
+import Spree from "./components/Game/SpreeGame/Game";
+import Infinite from "./components/Game/InfiniteGame/Game";
 import GameFinished from "./components/Game/ClassicGame/GameFinished";
 import Error from "./components/Error/Error";
 import ClassicMode from "./components/ClassicMode/ClassicMode";
@@ -41,7 +43,9 @@ class App extends Component {
           <Route path="/signup" component={SignInPage} exact />
           <Route path="/gameselect" component={GameSelect} exact />
           <Route path="/classic" component={ClassicMode} exact />
-          <Route path="/classic/game" component={Game} exact />
+          <Route path="/classic/game" component={Classic} exact />
+          <Route path="/spree/game" component={Spree} exact />
+          <Route path="/infinite/game" component={Infinite} exact />
           <Route path="/gamefinished" component={GameFinished} exact />
           <Route path="/classicgame" component={ClassicGame} exact />
           <Route component={Error} />

@@ -52,7 +52,6 @@
     text-decoration: none;
     text-align: center;
     font-family: 'Montserrat';
-    padding: 17px 0;
     border: 1px solid #ff7448;
     border-radius: 3px;
     -webkit-transition-duration: 0.4s;
@@ -62,6 +61,10 @@
 .answer-button:hover {
     background-color: #36393f;
     color: #ff7448;
+}
+
+.answer-button:focus {
+    outline: none;
 }
 
 .timer {
@@ -82,6 +85,19 @@
     height: 100%;
     width: 100%;
     border-radius: inherit;
+}
+
+.wrong-answers {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 5px;
+    color: #acb1ba;
+    border: 1px solid #202225;
+    border-radius: 10px;
+    background: #202225;
 }
 
 .points {

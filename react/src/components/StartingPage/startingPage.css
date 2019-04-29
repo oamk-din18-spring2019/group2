@@ -46,3 +46,7 @@
     background-color: #36393f;
     color: #ff7448;
 }
+
+.btn:focus {
+    outline: none;
+}
