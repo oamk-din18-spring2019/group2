@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./gamefinished.css";
-import Preloader from "../Preloader/Preloader";
+import "../gamefinished.css";
+import Preloader from "../../Preloader/Preloader";
 import axios from "axios";
 import Table from "react-bootstrap/lib/Table";
 import { Link } from "react-router-dom";
@@ -53,6 +53,11 @@ class GameFinished extends Component {
                   <td>{row.email}</td>
                 </tr>
               ))}
+              <tr className="playerRank">
+                <td>asd </td>
+                <td> asddas</td>
+                <td> adsdasds</td>
+              </tr>
             </tbody>
           </Table>
         </div>
