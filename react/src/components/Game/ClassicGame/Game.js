@@ -66,7 +66,7 @@ class Game extends Component {
           gameRunning: true
         });
 
-        console.log(this.state);
+        console.log("[Game.js fetchQuestions]", this.state);
       })
 
       .catch(e => console.log("Failed to fetch questions", e));
@@ -91,6 +91,9 @@ class Game extends Component {
       percentage: percentage
     });
 
+    // If time is 0 and user is doesn't answer the last question
+    // (time runs out), changes the state of gameRunning to false
+    // and redirects the user to the gamefinished page.
     if (questionIndex === 14 && time <= 0) {
       this.setState({ gameRunning: false });
     }
@@ -116,15 +119,15 @@ class Game extends Component {
     let correctAnswer = this.state.correctAnswer + 1;
     let points = this.state.points;
 
+    if (questionIndex > 13) {
+      this.setState({ gameRunning: false });
+    }
+
     if (event.target.id === "correct") {
       this.setState({
         correctAnswer: correctAnswer,
         points: points + 10
       });
-    }
-
-    if (questionIndex === 15) {
-      this.setState({ gameRunning: false });
     }
 
     clearInterval(this.timer);
@@ -133,6 +136,7 @@ class Game extends Component {
       percentage: 100,
       questionIndex: questionIndex + 1
     });
+
     this.startTimer();
     console.log("Question #" + (questionIndex + 1));
     console.log("points: " + this.state.points);
@@ -165,7 +169,7 @@ class Game extends Component {
             <Question question={questions[questionIndex].question} />
             <div className="answer-buttons">
               {questions[questionIndex].answers.map(answer => {
-                console.log(answer);
+                // console.log(answer);
                 return (
                   <Button
                     onClick={this.handleClick}

@@ -1,0 +1,27 @@
+.mode-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Table {
+  margin-top: 10px;
+}
+
+.blackfont {
+  color: white;
+}
+
+.select-button {
+  margin: 2.5px;
+  width: 15rem;
+  background-color: #ff8648;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Montserrat";
+  padding: 17px 0;
+  border: 1px solid #ff8648;
+  border-radius: 3px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
