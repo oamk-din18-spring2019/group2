@@ -8,22 +8,14 @@
 }
 
 .button-group {
-    position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
-    top: 25%;
-    margin: auto;
-}
-
-.button-group > h1 {
-    font-family: 'Montserrat';
-    color:#D8DEE9;
-    font-size: 3rem;
+    margin-top: 3rem;
 }
 
 .game-button {
-    margin-top: 5px;
+    margin-top: 10px;
     width: 15rem;
     background-color: #ff7448;
     text-decoration: none;
