@@ -30,6 +30,7 @@ class LogInPage extends Component {
             headers: {
                 'Content-Type': 'application/json',
                 'ACCEPT': 'application/json',
+                // 'Authorization': 'Bearer '+ apiToken;
             }
             ,
             // mode : 'no-cors'
