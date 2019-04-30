@@ -55,21 +55,54 @@ class SignUpPage extends Component {
       // id: this.state.id,
       username: this.state.username,
       password: this.state.password,
-      passwordConfirm: this.state.passwordConfirm
+      highScores: JSON.stringify({}),
+      counts: JSON.stringify({}),
+      lastScores: JSON.stringify({}),
+      totalScore: 0,
+
     };
 
     // POST a bunch of mock up data to out fake rest api
     if (this.handleValidation()) {
       const url =
-        "http://joelmaenpaa.com:8000/users/register/" +
-        `${data.username}-${data.password}`;
-      console.log(url);
-      fetch(url)
+        "http://127.0.0.1:8000/api/register";
+
+
+      console.log(JSON.stringify(data));
+      fetch(url, {
+        body: JSON.stringify(data),
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'ACCEPT': 'application/json',
+        }
+        ,
+        // mode : 'no-cors'
+      })
         .then(response => response.json())
         .then(myJSON => {
           console.log(myJSON);
         })
         .catch(err => console.log(err));
+
+
+      //       var xhr = new XMLHttpRequest();
+      //         xhr.open("POST", url, true);
+
+      // //Send the proper header information along with the request
+      // xhr.setRequestHeader("Content-Type", "application/json");
+      // xhr.setRequestHeader("ACCEPT", "application/json");
+      // xhr.onreadystatechange = function() { // Call a function when the state changes.
+      //     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      //       var response = xhr.responseText;
+      //         console.log("HERE NIG", response);
+      //     }else{
+      //       console.log(this.status);
+      //     }
+      // }
+      // xhr.send(JSON.stringify(data));
+      // xhr.send(new Int8Array()); 
+      // xhr.send(document);
 
       setTimeout(() => {
         this.setState({ redirect: true });

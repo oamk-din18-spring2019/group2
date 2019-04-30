@@ -53,10 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:5'],
-            'highScores' =>['required', 'string'],
-            'counts' => ['required', 'string'],
-            'lastScores'=>['required', 'string'],
-            'totalScore'=>['required','integer']
+            
 
         ]);
     }
@@ -69,46 +66,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return json_encode($data);
+        // return json_encode($data);
 
-        // return User::create([
-        //     'username' => $data['username'],
-        //     'password' => Hash::make($data['password']),
-        //     'counts' => $data['counts'],
-        //     'highScores' => $data['highScores'],
-        //     'lastScores' => $data['lastScores'],
-        //     'totalScore' =>$data['totalScore']
-        // ]);
+        return User::create([
+            'username' => $data['username'],
+            'password' => Hash::make($data['password']),
+            'counts' => $data['counts'],
+            'highScores' => $data['highScores'],
+            'lastScores' => $data['lastScores'],
+            'totalScore' =>$data['totalScore']
+        ]);
     }
 
     public function register(Request $request)
 {
 
-    $bodyContent = $request->getContent();
-    
-    //     return $content;
-    $username = json_decode($bodyContent)['username'];
-    
-    return $bodyContent;
-
-     
-    // $this->create(array(["username"->$content['username']]));
-
-    
-        // event(new Registered($user = $this->create($request->all())));
-    
-       
-       
-        // return $this->registered($request, $user)
-        //                 ?: redirect($this->redirectPath());
+    // $bodyContent = $request->getContent();
+    // return json_encode($request->only('highScores'));
+    // // return $bodyContent;
 
     
     // $this->validator($request->all())->validate();
 
     
-    // event(new Registered($user = $this->create($request->all())));
+    event(new Registered($user = $this->create($request->all())));
 
-    // // After the user is created, he's logged in.
+    return $this->registered($request, $user);
+    // After the user is created, he's logged in.
     // $this->guard()->login($user);
 
    
