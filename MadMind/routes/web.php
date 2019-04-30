@@ -26,9 +26,11 @@ Route::resource('categories', 'categoriesController');
 Route::resource('matches', 'matchesController');
 Route::resource('admin/questions', 'adminController');
 Route::get('users/register/{n}', array('middleware'=> 'cors', 'uses' => 'UsersController@index'));
-
+Route::get('users/login/{n}', array('middleware'=> 'cors', 'uses' => 'UsersController@login'));
 // Route::post('users/register','UsersController');
 Route::get('api/getQuestions/{n}',array('middleware'=> 'cors', 'uses' => 'apiController@getQuestions'));
 Route::post('api/create',array('middleware'=> 'cors', 'uses' => 'registerController@create'));
 Route::get('/home', 'homeController@index')->name('home');
-Auth::routes(['register' => false]);
+
+Route::get('api/createMatch/$n',array('middleware'=> 'cors', 'uses' => 'apiController@createMatch'));
+Auth::routes();

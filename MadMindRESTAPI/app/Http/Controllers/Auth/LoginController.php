@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-class loginController extends Controller
+// XFRyc7sxpUZhVDBCIaJWjXEfrHw0Nz4A5iTAF7jnDHWYvPqDF7WSY2FdzR28
+class LoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -21,12 +21,17 @@ class loginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function username()
+{
+    return 'username';
+}
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
     protected $redirectTo = '/home';
+
     /**
      * Create a new controller instance.
      *
@@ -36,29 +41,32 @@ class loginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    public function username()
-    {
-        return 'username';
+
+    public function login(Request $request)
+{
+    $this->validateLogin($request);
+
+    if ($this->attemptLogin($request)) {
+        $user = $this->guard()->user();
+        $user->generateToken();
+
+        return response()->json([
+            'data' => $user->toArray(),
+        ]);
     }
 
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->only('username', 'password');
+    return $this->sendFailedLoginResponse($request);
+}
 
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->intended('dashboard');
-        }
-        if (Auth::attempt(['username' => $username, 'password' => $password, 'active' => 1])) {
-            // The user is active, not suspended, and exists.
-        }
-        if (Auth::guard('admin')->attempt($credentials)) {
-            //
-        }
-        if (Auth::attempt(['username' => $username, 'password' => $password], $remember)) {
-            // The user is being remembered...
-        }
-        Auth::logout();
+public function logout(Request $request)
+{
+    $user = Auth::guard('api')->user();
+
+    if ($user) {
+        $user->api_token = null;
+        $user->save();
     }
 
+    return response()->json(['data' => 'User logged out.'], 200);
+}
 }

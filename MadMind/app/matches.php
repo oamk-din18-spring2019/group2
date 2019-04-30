@@ -9,7 +9,8 @@ class matches extends Model
     protected $guarded = ['id'];
     private $creator, $matchType , $score, $isRunning, $questionsToBeAttempted, $numberOfCorrectAnswers;
     public $created_at;
-    public function __constructor($creator, $matchType, $created_at, $score, $isRunning, $questionsToBeAttempted, $numberOfCorrectAnswers){
+
+    public function __constructor($creator, $matchType, $score, $isRunning, $questionsToBeAttempted, $numberOfCorrectAnswers){
 
         $this->setBy($creator);
         $this->setMatchType($matchType);
