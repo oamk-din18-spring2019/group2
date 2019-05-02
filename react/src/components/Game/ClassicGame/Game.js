@@ -204,8 +204,11 @@ class Game extends Component {
             <div className="timer">
               <ProgressBar percentage={percentage} />
             </div>
+            <div className="wrong-answers">
+              {"Question #: " + this.state.questionIndex + "/" + this.state.questions.length}
+            </div>
             <div className="points">
-              {this.state.correctAnswer + "/" + this.state.questions.length}
+              {"Correct Answers: " + this.state.correctAnswer + "/" + this.state.questions.length}
             </div>
           </div>
         </div>
