@@ -27,7 +27,7 @@ class GameFinished extends Component {
       score: this.props.location.points
     };
 
-    console.log("match update obj", obj);
+    // console.log("match update obj", obj);
     fetch(url, {
       body: JSON.stringify(obj),
       method: "POST",
@@ -39,7 +39,7 @@ class GameFinished extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
       })
       .catch(err => console.log(err));
   }
@@ -48,7 +48,7 @@ class GameFinished extends Component {
     const url =
       "http://joelmaenpaa.com:8000/api/users/" + this.props.location.userId;
 
-    console.log("user fetching from", url);
+    // console.log("user fetching from", url);
 
     fetch(url, {
       method: "GET",
@@ -60,7 +60,7 @@ class GameFinished extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log("user data be ", data);
+        // console.log("user data be ", data);
 
         let prevScore = data.highScores[this.props.location.mode];
         this.setState({ username: data.username, isLoading: false });
@@ -104,7 +104,7 @@ class GameFinished extends Component {
     })
       .then(response => response.json())
       .then(myJSON => {
-        console.log(myJSON);
+        // console.log(myJSON);
       })
       .catch(err => console.log(err));
   }

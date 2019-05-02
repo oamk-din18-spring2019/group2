@@ -43,7 +43,7 @@ class Game extends Component {
     let url =
       "http://joelmaenpaa.com:8000/api/getQuestions/" +
       numberOfQuestions.toString();
-    console.log(url);
+    // console.log(url);
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -123,7 +123,7 @@ class Game extends Component {
   }
 
   handleStartMatch() {
-    console.log("here state ", this.props.location);
+    // console.log("here state ", this.props.location);
     const url = "http://joelmaenpaa.com:8000/api/matches";
 
     const obj = {
@@ -142,7 +142,7 @@ class Game extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ matchId: data.id });
-        console.log(data);
+        // console.log(data);
       })
       .catch(err => console.log(err));
   }
@@ -202,17 +202,19 @@ class Game extends Component {
       );
     }
     if (!this.state.gameRunning) {
-      return <Redirect
-        to={{
-          pathname: "/spree/game/finish",
-          points: this.state.points,
-          numberOfCorrectAnswers: this.state.correctAnswer,
-          matchId: this.state.matchId,
-          token: this.props.location.token,
-          userId: this.props.location.userId,
-          mode: "spree"
-        }}
-      />;
+      return (
+        <Redirect
+          to={{
+            pathname: "/spree/game/finish",
+            points: this.state.points,
+            numberOfCorrectAnswers: this.state.correctAnswer,
+            matchId: this.state.matchId,
+            token: this.props.location.token,
+            userId: this.props.location.userId,
+            mode: "spree"
+          }}
+        />
+      );
     }
   }
 }

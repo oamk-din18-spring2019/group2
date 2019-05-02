@@ -8,7 +8,6 @@ import Header from "../../Header/Header";
 class ClassicMode extends Component {
   constructor(props) {
     super(props);
-    console.log("props niggi", this.props);
     this.state = {
       top10Players: [],
       isLoading: true,
@@ -31,7 +30,7 @@ class ClassicMode extends Component {
   }
 
   handleStartMatch() {
-    console.log("here state ", this.props);
+    // console.log("here state ", this.props);
     const url = "http://joelmaenpaa.com:8000/api/matches";
 
     const obj = {
