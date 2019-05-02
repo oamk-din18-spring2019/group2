@@ -37,4 +37,10 @@ class UserController extends Controller
 
         return 204;
     }
+
+    public function leaderBoard()
+    {
+        $users = \DB::table('users')->select('username', 'highScores', 'lastScore', 'totalScore')->orderBy('totalScore', 'desc')->limit(10)->get();
+        return $users;
+    }
 }
