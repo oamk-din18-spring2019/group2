@@ -23,7 +23,6 @@ class ClassicMode extends Component {
         [stateName]: data,
         isLoading: false
       });
-      //  console.log(this.state.top10Players);
     });
   }
 
@@ -47,7 +46,6 @@ class ClassicMode extends Component {
         ACCEPT: "application/json",
         Authorization: "Bearer " + this.props.location.token
       }
-      // mode : 'no-cors'
     })
       .then(res => res.json())
       .then(data => {

@@ -10,8 +10,6 @@ import Header from "../../Header/Header";
 class Game extends Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props.location);
     this.state = {
       questions: [],
       isLoading: true,
@@ -125,7 +123,6 @@ class Game extends Component {
   }
 
   // This will handle the button clicks
-
   handleClick(ans, correctAnswerStr) {
     let questionIndex = this.state.questionIndex;
     let correctAnswer = this.state.correctAnswer + 1;
@@ -179,7 +176,6 @@ class Game extends Component {
         ACCEPT: "application/json",
         Authorization: "Bearer " + this.props.location.token
       }
-      // mode : 'no-cors'
     })
       .then(res => res.json())
       .then(data => {
@@ -217,7 +213,6 @@ class Game extends Component {
               <Question question={questions[questionIndex].question} />
               <div className="answer-buttons">
                 {questions[questionIndex].answers.map(answer => {
-                  // console.log(answer);
                   return (
                     <Button
                       onClick={() =>
@@ -226,7 +221,6 @@ class Game extends Component {
                           questions[questionIndex].correctAnswer
                         )
                       }
-                      // id={answer.correct ? "correct" : "incorrect"}
                       answer={answer.text}
                     />
                   );

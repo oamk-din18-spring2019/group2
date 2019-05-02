@@ -65,10 +65,9 @@ class Game extends Component {
             { text: option3, correct: false },
             { text: correctAnswer, correct: true }
           ];
-
+          obj.correctAnswer = correctAnswer;
           this.shuffle(obj.answers);
           questions.push(obj);
-          //   console.log("obj", obj);
         });
 
         this.setState({
@@ -76,8 +75,6 @@ class Game extends Component {
           isLoading: false,
           gameRunning: true
         });
-
-        /// console.log(this.state);
       })
 
       .catch(e => console.log("Failed to fetch questions", e));
@@ -107,13 +104,13 @@ class Game extends Component {
   }
 
   // This will handle the button clicks
-  handleClick(event) {
+  handleClick(ans, correctAnswerStr) {
     let questionIndex = this.state.questionIndex;
     let correctAnswer = this.state.correctAnswer + 1;
     let questionsAnswered = this.state.questionsAnswered + 1;
     let points = this.state.points;
 
-    if (event.target.id === "correct") {
+    if (ans === correctAnswerStr) {
       this.setState({
         correctAnswer: correctAnswer,
         points: points + 10
@@ -123,9 +120,6 @@ class Game extends Component {
       questionIndex: questionIndex + 1,
       questionsAnswered: questionsAnswered
     });
-
-    // console.log("Question #" + (questionIndex + 1));
-    // console.log("points: " + this.state.points);
   }
 
   // This fetches the questions while the component mounts
@@ -157,11 +151,14 @@ class Game extends Component {
               <Question question={questions[questionIndex].question} />
               <div className="answer-buttons">
                 {questions[questionIndex].answers.map(answer => {
-                  console.log(answer);
                   return (
                     <Button
-                      onClick={this.handleClick}
-                      id={answer.correct ? "correct" : "incorrect"}
+                      onClick={() =>
+                        this.handleClick(
+                          answer.text,
+                          questions[questionIndex].correctAnswer
+                        )
+                      }
                       answer={answer.text}
                     />
                   );

@@ -10,8 +10,6 @@ class GameSelect extends Component {
       userId: this.props.location.userId,
       token: this.props.location.token
     };
-
-    console.log("GAMESELECT state", this.state.token);
   }
 
   render() {
