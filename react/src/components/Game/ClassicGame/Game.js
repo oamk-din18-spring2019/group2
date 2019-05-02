@@ -45,30 +45,31 @@ class Game extends Component {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         const questions = [];
 
-        for (let i = 0; i < numberOfQuestions; i++) {
-          let arr = [...data];
-          arr = arr.splice(i * 13, 13);
-          let obj = {};
-          obj.question = arr[3];
+        data.forEach((questionData) => {
+          const { question, option1, option2, option3, correctAnswer } = questionData;
+          const obj = {}
+          obj.question = question;
           obj.answers = [
-            { text: arr[4], correct: false },
-            { text: arr[5], correct: false },
-            { text: arr[6], correct: false },
-            { text: arr[7], correct: true }
+            { text: option1, correct: false },
+            { text: option2, correct: false },
+            { text: option3, correct: false },
+            { text: correctAnswer, correct: true }
           ];
+
           this.shuffle(obj.answers);
           questions.push(obj);
-        }
+          console.log("obj", obj);
+        });
+
         this.setState({
           questions: questions,
           isLoading: false,
           gameRunning: true
         });
 
-        console.log("[Game.js fetchQuestions]", this.state);
+        console.log(this.state);
       })
 
       .catch(e => console.log("Failed to fetch questions", e));
