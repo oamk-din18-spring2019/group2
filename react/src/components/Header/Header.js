@@ -39,13 +39,13 @@ class Header extends Component {
     if (!this.props.logout) {
       return (
         <header className="header">
-          <NavLink to="/">
-            <img
-              className="header-logo"
-              alt="madmind"
-              src={require("../../img/madmind.png")}
-            />
-          </NavLink>
+          {/* <NavLink to="/"> */}
+          <img
+            className="header-logo"
+            alt="madmind"
+            src={require("../../img/madmind.png")}
+          />
+          {/* </NavLink> */}
           <nav className="navbar">
             {this.navLinks}
             {/* <NavLink to={this.redirectRoute} className="navbar-link">
@@ -60,13 +60,13 @@ class Header extends Component {
     } else {
       return (
         <header className="header">
-          <NavLink to="/gameselect">
-            <img
-              className="header-logo"
-              alt="madmind"
-              src={require("../../img/madmind.png")}
-            />
-          </NavLink>
+          {/* <NavLink to="/gameselect"> */}
+          <img
+            className="header-logo"
+            alt="madmind"
+            src={require("../../img/madmind.png")}
+          />
+          {/* </NavLink> */}
           <nav className="navbar">
             {this.navLinks}
             {/* <NavLink to={this.redirectRoute} className="navbar-link">
