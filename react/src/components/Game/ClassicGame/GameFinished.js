@@ -10,7 +10,9 @@ class GameFinished extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
+      userId: this.props.location.userId,
+      token: this.props.location.token
     };
 
     this.saveMatch();
@@ -53,21 +55,14 @@ class GameFinished extends Component {
     });
   }
 
-fetchUserData(){
+  fetchUserData() {
+    const url =
+      "http://joelmaenpaa.com:8000/api/users/" + this.props.location.userId;
 
- const url = "http://joelmaenpaa.com:8000/api/matches/update";
+    console.log("user fetching from", url);
 
-    const obj = {
-      id: this.props.location.matchId,
-      isRunning: false,
-      numberOfCorrectAnswers: this.props.location.numberOfCorrectAnswers,
-      score: this.props.location.points
-    };
-
-    console.log("match update obj", obj);
     fetch(url, {
-      body: JSON.stringify(obj),
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         ACCEPT: "application/json",
@@ -77,13 +72,56 @@ fetchUserData(){
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        console.log("user data be ", data);
+
+        let prevScore = data.highScores[this.props.location.mode];
+
+        if (this.props.location.points > prevScore) {
+          const keys = Object.keys(data.highScores);
+          const newTotalscore =
+            data.totalScore - prevScore + this.props.location.points;
+
+          const newhighScores = {};
+          keys.forEach(key => {
+            if (key != this.props.location.mode) {
+              newhighScores[key] = data.highScores.key;
+            } else {
+              newhighScores[key] = this.props.location.points;
+            }
+          });
+
+          this.updateScore(newhighScores, newTotalscore);
+        }
       })
       .catch(err => console.log(err));
+  }
 
-  
-}
+  updateScore(updateObj, newTotalScore) {
+    const url = "http://joelmaenpaa.com:8000/api/users/scores";
+
+    const data = {
+      updateObj,
+      newTotalScore,
+      userId: this.props.location.userId
+    };
+    fetch(url, {
+      body: JSON.stringify(data),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEPT: "application/json",
+        Authorization: "Bearer " + this.props.location.token
+      }
+      // mode : 'no-cors'
+    })
+      .then(response => response.json())
+      .then(myJSON => {
+        console.log(myJSON);
+      })
+      .catch(err => console.log(err));
+  }
   componentDidMount() {
+    this.fetchUserData();
     this.getData("https://jsonplaceholder.typicode.com/users", "top10Players");
   }
 
@@ -102,14 +140,12 @@ fetchUserData(){
             <Table bordered hover condensed className="blackfont">
               <thead>
                 <tr>
-                  <th>Rank</th>
                   <th>Username</th>
                   <th>Score</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>kappa</td>
                   <td>pakka</td>
                   <td>pappa</td>
                 </tr>
@@ -119,14 +155,12 @@ fetchUserData(){
             <Table bordered hover condensed className="blackfont">
               <thead>
                 <tr>
-                  <th>Rank</th>
                   <th>Username</th>
                   <th>Score</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>kappa</td>
                   <td>pakka</td>
                   <td>pappa</td>
                 </tr>
@@ -134,7 +168,13 @@ fetchUserData(){
             </Table>
           </div>
           <div className="text-center nappimargin">
-            <Link to="/classic/game">
+            <Link
+              to={{
+                pathname: "/classic/game",
+                token: this.state.token,
+                userId: this.state.userId
+              }}
+            >
               <button className="select-button">Start Match</button>
             </Link>
             <Link to="/gameselect">

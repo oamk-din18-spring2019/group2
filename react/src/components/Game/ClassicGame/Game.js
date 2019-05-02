@@ -260,7 +260,9 @@ class Game extends Component {
             points: this.state.points,
             numberOfCorrectAnswers: this.state.correctAnswer,
             matchId: this.state.matchId,
-            token: this.props.location.token
+            token: this.props.location.token,
+            userId: this.props.location.userId,
+            mode: "classic"
           }}
         />
       );

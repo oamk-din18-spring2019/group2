@@ -40,14 +40,19 @@ class SignUpPage extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    const dataModel = {
+      classic: 0,
+      spree: 0,
+      infinite: 0
+    };
     // Don't know why the id increments every time it's pushed to the json array help plox!?!?!!11!!1!
     let data = {
       // id: this.state.id,
       username: this.state.username,
       password: this.state.password,
-      highScores: JSON.stringify({}),
-      counts: JSON.stringify({}),
-      lastScores: JSON.stringify({}),
+      highScores: JSON.stringify(dataModel),
+      counts: JSON.stringify(dataModel),
+      lastScores: JSON.stringify(dataModel),
       totalScore: 0
     };
 
