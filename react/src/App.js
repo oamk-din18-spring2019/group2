@@ -12,7 +12,9 @@ import GameSelect from "./components/GameSelect/GameSelect";
 import Classic from "./components/Game/ClassicGame/Game";
 import Spree from "./components/Game/SpreeGame/Game";
 import Infinite from "./components/Game/InfiniteGame/Game";
-import GameFinished from "./components/Game/ClassicGame/GameFinished";
+import ClassicGameFinished from "./components/Game/ClassicGame/GameFinished";
+import SpreeGameFinished from "./components/Game/SpreeGame/GameFinished";
+import InfiniteGameFinished from "./components/Game/InfiniteGame/GameFinished";
 import Error from "./components/Error/Error";
 import ClassicMode from "./components/Modes/ClassicMode/ClassicMode";
 import SpreeMode from "./components/Modes/SpreeMode/SpreeMode";
@@ -48,7 +50,9 @@ class App extends Component {
           <Route path="/classic/game" component={Classic} exact />
           <Route path="/spree/game" component={Spree} exact />
           <Route path="/infinite/game" component={Infinite} exact />
-          <Route path="/gamefinished" component={GameFinished} exact />
+          <Route path="/classic/game/finish" component={ClassicGameFinished} exact />
+          <Route path="/spree/game/finish" component={SpreeGameFinished} exact />
+          <Route path="/infinite/game/finish" component={InfiniteGameFinished} exact />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

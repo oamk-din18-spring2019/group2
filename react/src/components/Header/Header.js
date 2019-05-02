@@ -23,7 +23,6 @@ class Header extends Component {
       );
     });
 
-    // console.log(this.navLinks);
     if (this.c === "logout") {
       console.log(this.c);
       this.redirectRoute = "/";
@@ -48,12 +47,6 @@ class Header extends Component {
         </NavLink>
         <nav className="navbar">
           {this.navLinks}
-          {/* <NavLink to={this.redirectRoute} className="navbar-link">
-            {this.c}
-          </NavLink> */}
-          {/* <NavLink to="/signup" className="navbar-link">
-            SIGN UP
-          </NavLink> */}
         </nav>
       </header>
     );

@@ -45,9 +45,8 @@ class SignUpPage extends Component {
       spree: 0,
       infinite: 0
     };
-    // Don't know why the id increments every time it's pushed to the json array help plox!?!?!!11!!1!
+
     let data = {
-      // id: this.state.id,
       username: this.state.username,
       password: this.state.password,
       highScores: JSON.stringify(dataModel),
@@ -56,7 +55,6 @@ class SignUpPage extends Component {
       totalScore: 0
     };
 
-    // POST a bunch of mock up data to out fake rest api
     if (this.handleValidation()) {
       const url = "http://joelmaenpaa.com:8000/api/register";
 
@@ -75,24 +73,6 @@ class SignUpPage extends Component {
           console.log(myJSON);
         })
         .catch(err => console.log(err));
-
-      //       var xhr = new XMLHttpRequest();
-      //         xhr.open("POST", url, true);
-
-      // //Send the proper header information along with the request
-      // xhr.setRequestHeader("Content-Type", "application/json");
-      // xhr.setRequestHeader("ACCEPT", "application/json");
-      // xhr.onreadystatechange = function() { // Call a function when the state changes.
-      //     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      //       var response = xhr.responseText;
-      //         console.log("HERE NIG", response);
-      //     }else{
-      //       console.log(this.status);
-      //     }
-      // }
-      // xhr.send(JSON.stringify(data));
-      // xhr.send(new Int8Array());
-      // xhr.send(document);
 
       setTimeout(() => {
         this.setState({ redirect: true });
