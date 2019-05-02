@@ -39,12 +39,14 @@ class Game extends Component {
   fetchQuestions() {
     let numberOfQuestions = 15;
     let url =
-      "http://joelmaenpaa.com:8000/api/getQuestions/" + numberOfQuestions.toString();
+      "http://joelmaenpaa.com:8000/api/getQuestions/" +
+      numberOfQuestions.toString();
     console.log(url);
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        let questions = [];
+        console.log(data);
+        const questions = [];
 
         for (let i = 0; i < numberOfQuestions; i++) {
           let arr = [...data];
