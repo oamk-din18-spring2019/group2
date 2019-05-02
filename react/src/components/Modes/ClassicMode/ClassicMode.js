@@ -98,7 +98,8 @@ class ClassicMode extends Component {
               to={{
                 pathname: "/classic/game",
                 userId: this.state.userId,
-                token: this.state.token
+                token: this.state.token,
+                mode: "classic"
               }}
             >
               <button className="select-button">Start Match</button>
