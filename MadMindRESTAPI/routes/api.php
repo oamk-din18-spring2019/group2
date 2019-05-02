@@ -37,15 +37,28 @@ Route::post('logout', 'Auth\LoginController@logout');
 
 Use App\Question;
 
+Route::get('getQuestions/{n}','QuestionController@getQuestions');
+
 Route::group(['middleware' => 'auth:api'], function() {
-Route::get('questions', 'QuestionController@index');
 
-Route::get('questions/{question}', 'QuestionController@show');
+    Route::get('questions', 'QuestionController@index');
 
-Route::post('questions', 'QuestionController@store');
+    Route::get('questions/{question}', 'QuestionController@show');
 
-Route::put('questions/{question}', 'QuestionController@update');
+    Route::post('questions', 'QuestionController@store');
 
-Route::delete('questions/{question}', 'QuestionController@delete');
+    Route::put('questions/{question}', 'QuestionController@update');
+
+    Route::delete('questions/{question}', 'QuestionController@delete');
+
+    Route::post('matches', 'MatchController@create');
+
+    Route::get('matches/{id}', 'MatchController@show');
+
+    Route::get('matches/by/{id}', 'MatchController@showBy');
+
+    Route::post('matches/update', 'MatchController@update');
+
+    
 
 });

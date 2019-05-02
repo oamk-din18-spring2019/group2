@@ -32,7 +32,7 @@ class SignUpPage extends Component {
     let formIsValid = true;
 
     // Test if the username and password are valid inputs
-    if (!/^[a-zA-Z]+$/.test(this.state.username)) {
+    if (!/^[a-zA-Z0-9]+$/.test(this.state.username)) {
       formIsValid = false;
       alert("Your username can contain only letters");
     }
@@ -58,25 +58,21 @@ class SignUpPage extends Component {
       highScores: JSON.stringify({}),
       counts: JSON.stringify({}),
       lastScores: JSON.stringify({}),
-      totalScore: 0,
-
+      totalScore: 0
     };
 
     // POST a bunch of mock up data to out fake rest api
     if (this.handleValidation()) {
-      const url =
-        "http://127.0.0.1:8000/api/register";
-
+      const url = "http://joelmaenpaa.com:8000/api/register";
 
       console.log(JSON.stringify(data));
       fetch(url, {
         body: JSON.stringify(data),
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'ACCEPT': 'application/json',
+          "Content-Type": "application/json",
+          ACCEPT: "application/json"
         }
-        ,
         // mode : 'no-cors'
       })
         .then(response => response.json())
@@ -84,7 +80,6 @@ class SignUpPage extends Component {
           console.log(myJSON);
         })
         .catch(err => console.log(err));
-
 
       //       var xhr = new XMLHttpRequest();
       //         xhr.open("POST", url, true);
@@ -101,7 +96,7 @@ class SignUpPage extends Component {
       //     }
       // }
       // xhr.send(JSON.stringify(data));
-      // xhr.send(new Int8Array()); 
+      // xhr.send(new Int8Array());
       // xhr.send(document);
 
       setTimeout(() => {

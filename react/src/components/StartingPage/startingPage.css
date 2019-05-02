@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 .btn {
@@ -45,4 +45,8 @@
 .btn:hover {
     background-color: #36393f;
     color: #ff7448;
+}
+
+.btn:focus {
+    outline: none;
 }

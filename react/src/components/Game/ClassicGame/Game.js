@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../Preloader/Preloader";
 import Question from "./Question";
 import Button from "./Buttons";
 import ProgressBar from "./ProgressBar";
-import "./game.css";
+import "../game.css";
 import { Redirect } from "react-router-dom";
 
 class Game extends Component {
@@ -39,12 +39,14 @@ class Game extends Component {
   fetchQuestions() {
     let numberOfQuestions = 15;
     let url =
-      "http://joelmaenpaa.com/api/getQuestions/" + numberOfQuestions.toString();
+      "http://joelmaenpaa.com:8000/api/getQuestions/" +
+      numberOfQuestions.toString();
     console.log(url);
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        let questions = [];
+        console.log(data);
+        const questions = [];
 
         for (let i = 0; i < numberOfQuestions; i++) {
           let arr = [...data];
@@ -130,6 +132,10 @@ class Game extends Component {
       });
     }
 
+    if (this.state.questionIndex === 14) {
+      this.setState({ gameRunning: false });
+    }
+
     clearInterval(this.timer);
     this.setState({
       time: 1600,
@@ -156,7 +162,6 @@ class Game extends Component {
 
   render() {
     // Just shortening state to something prettier
-
     const { questions, questionIndex, percentage } = this.state;
 
     // Check if the page has finished loading

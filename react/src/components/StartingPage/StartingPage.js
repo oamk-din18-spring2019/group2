@@ -8,13 +8,13 @@ class StartingPage extends Component {
             <div>
                 <div className="content-wrapper">
                     <div className="monkaS">
-                        <img className="logo" alt="madmind" src={require('../../img/madmind.png')} />
+                        <img className="logo" alt="madmind" src={require('../../img/madmindNoText.png')} />
                         <div className="btn-group">
                             <Link to="/login">
-                                <button className="btn log-in">LOGIN</button>
+                                <button className="btn log-in">Login</button>
                             </Link>
                             <Link to="/signup">
-                                <button className="btn sign-up">SIGN UP</button>
+                                <button className="btn sign-up">Sign Up</button>
                             </Link>
                         </div>
                     </div>
