@@ -42,7 +42,7 @@ class Game extends Component {
     let url =
       "http://joelmaenpaa.com:8000/api/getQuestions/" +
       numberOfQuestions.toString();
-    console.log(url);
+    // console.log(url);
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -75,7 +75,7 @@ class Game extends Component {
           gameRunning: true
         });
 
-        console.log(this.state);
+        // console.log(this.state);
       })
 
       .catch(e => console.log("Failed to fetch questions", e));
@@ -118,7 +118,7 @@ class Game extends Component {
         questionIndex: questionIndex + 1
       });
       this.startTimer();
-      console.log("Question #" + (questionIndex + 1));
+      // console.log("Question #" + (questionIndex + 1));
     }
   }
 
@@ -131,15 +131,15 @@ class Game extends Component {
     if (questionIndex > 13) {
       this.setState({ gameRunning: false });
     }
-    console.log(ans, correctAnswerStr);
+    // console.log(ans, correctAnswerStr);
     if (ans === correctAnswerStr) {
-      console.log("Correctanswer");
+      // console.log("Correctanswer");
       this.setState({
         correctAnswer: correctAnswer,
         points: points + 10
       });
     } else {
-      console.log("Incorrectanswer");
+      // console.log("Incorrectanswer");
     }
 
     if (this.state.questionIndex === 14) {
@@ -154,12 +154,12 @@ class Game extends Component {
     });
 
     this.startTimer();
-    console.log("Question #" + (questionIndex + 1));
-    console.log("points: " + this.state.points);
+    // console.log("Question #" + (questionIndex + 1));
+    // console.log("points: " + this.state.points);
   }
 
   handleStartMatch() {
-    console.log("here state ", this.props.location);
+    // console.log("here state ", this.props.location);
     const url = "http://joelmaenpaa.com:8000/api/matches";
 
     const obj = {
@@ -178,7 +178,7 @@ class Game extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ matchId: data.id });
-        console.log(data);
+        // console.log(data);
       })
       .catch(err => console.log(err));
   }

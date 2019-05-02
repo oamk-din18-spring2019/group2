@@ -17,8 +17,6 @@ class LogInPage extends Component {
     };
 
     const url = "http://joelmaenpaa.com:8000/api/login";
-
-    console.log(JSON.stringify(data));
     fetch(url, {
       body: JSON.stringify(data),
       method: "POST",
@@ -39,19 +37,12 @@ class LogInPage extends Component {
             authenticated: true,
             userId: userId
           });
-
-          console.log("Welcome nigga");
-          console.log(this.state.authenticated);
         } else {
-          console.log(
-            "YOU JUST GOT BENCHED KID FUCK YOUR MOTHERFUCKING ASS HOLE YOU FUCKING CUNT"
-          );
+          alert("Login failed!");
         }
       })
       .catch(err => {
-        console.log(
-          "YOU JUST GOT BENCHED KID FUCK YOUR MOTHERFUCKING ASS HOLE YOU FUCKING CUNT"
-        );
+        alert("Login failed!");
       });
   };
 

@@ -40,7 +40,7 @@ class Game extends Component {
     let url =
       "http://joelmaenpaa.com:8000/api/getQuestions/" +
       numberOfQuestions.toString();
-    console.log(url);
+    // console.log(url);
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -73,7 +73,7 @@ class Game extends Component {
           gameRunning: true
         });
 
-        console.log(this.state);
+        // console.log(this.state);
       })
 
       .catch(e => console.log("Failed to fetch questions", e));
@@ -106,12 +106,12 @@ class Game extends Component {
       questionsAnswered: questionsAnswered
     });
 
-    console.log("Question #" + (questionIndex + 1));
-    console.log("points: " + this.state.points);
+    // console.log("Question #" + (questionIndex + 1));
+    // console.log("points: " + this.state.points);
   }
 
   handleStartMatch() {
-    console.log("here state ", this.props.location);
+    // console.log("here state ", this.props.location);
     const url = "http://joelmaenpaa.com:8000/api/matches";
 
     const obj = {
@@ -130,7 +130,7 @@ class Game extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ matchId: data.id });
-        console.log(data);
+        // console.log(data);
       })
       .catch(err => console.log(err));
   }
@@ -183,17 +183,19 @@ class Game extends Component {
       );
     }
     if (!this.state.gameRunning) {
-      return <Redirect
-        to={{
-          pathname: "/infinite/game/finish",
-          points: this.state.points,
-          numberOfCorrectAnswers: this.state.correctAnswer,
-          matchId: this.state.matchId,
-          token: this.props.location.token,
-          userId: this.props.location.userId,
-          mode: "infinite"
-        }}
-      />;
+      return (
+        <Redirect
+          to={{
+            pathname: "/infinite/game/finish",
+            points: this.state.points,
+            numberOfCorrectAnswers: this.state.correctAnswer,
+            matchId: this.state.matchId,
+            token: this.props.location.token,
+            userId: this.props.location.userId,
+            mode: "infinite"
+          }}
+        />
+      );
     }
   }
 }
