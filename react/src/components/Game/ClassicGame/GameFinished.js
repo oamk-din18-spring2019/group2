@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../gamefinished.css";
 import Preloader from "../../Preloader/Preloader";
-import axios from "axios";
 import Table from "react-bootstrap/lib/Table";
 import { Link } from "react-router-dom";
 import Header from "../../Header/Header";
@@ -43,16 +42,6 @@ class GameFinished extends Component {
         console.log(data);
       })
       .catch(err => console.log(err));
-
-  }
-  getData(url, stateName) {
-    axios.get(url).then(({ data }) => {
-      this.setState({
-        [stateName]: data,
-        isLoading: false
-      });
-      console.log(this.state.top10Players);
-    });
   }
 
   fetchUserData() {
@@ -74,6 +63,7 @@ class GameFinished extends Component {
         console.log("user data be ", data);
 
         let prevScore = data.highScores[this.props.location.mode];
+        this.setState({ username: data.username, isLoading: false });
 
         if (this.props.location.points > prevScore) {
           const keys = Object.keys(data.highScores);
@@ -120,7 +110,6 @@ class GameFinished extends Component {
   }
   componentDidMount() {
     this.fetchUserData();
-    this.getData("https://jsonplaceholder.typicode.com/users", "top10Players");
   }
 
   render() {
@@ -144,7 +133,7 @@ class GameFinished extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>pakka</td>
+                  <td>{this.state.username}</td>
                   <td>pappa</td>
                 </tr>
               </tbody>
@@ -159,8 +148,8 @@ class GameFinished extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>pakka</td>
-                  <td>pappa</td>
+                  <td>{this.state.username}</td>
+                  <td>{this.props.location.points}</td>
                 </tr>
               </tbody>
             </Table>
@@ -180,7 +169,8 @@ class GameFinished extends Component {
                 pathname: "/gameselect",
                 token: this.state.token,
                 userId: this.state.userId
-              }}>
+              }}
+            >
               <button className="select-button">Go Back</button>
             </Link>
           </div>
