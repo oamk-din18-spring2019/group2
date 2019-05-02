@@ -67,6 +67,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('users/{n}', 'UserController@show');
 
-    
+    Route::get('leaderboard', 'UserController@leaderBoard');
 
 });
