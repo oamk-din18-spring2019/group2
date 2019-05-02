@@ -41,33 +41,10 @@ class LogInPage extends Component {
         }, 1000);
     };
 
-<<<<<<< HEAD
     render() {
         if (this.state.redirect) {
             return <Redirect to="/gameselect" />
         }
-=======
-    console.log(JSON.stringify(data));
-    fetch(url, {
-      body: JSON.stringify(data),
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ACCEPT: "application/json"
-        // 'Authorization': 'Bearer '+ apiToken;
-      }
-      // mode : 'no-cors'
-    })
-      .then(response => response.json())
-      .then(myJson => {
-        // console.log(myJSON);
-        const apiToken = myJson.data.api_token;
-        console.log("API TOKEN ", apiToken);
-      })
-      .catch(err => console.log(err));
-    // console.log("monkaS");
-  };
->>>>>>> master
 
         return (
             <div className="form-wrapper">
