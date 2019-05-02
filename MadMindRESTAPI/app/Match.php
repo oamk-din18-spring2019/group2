@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Match extends Model
 {
-    protected $guarded = ['id'];
+    // protected $guarded = ['id'];
     /**
      * The attributes that are mass assignable.
      *

@@ -51,6 +51,14 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::delete('questions/{question}', 'QuestionController@delete');
 
+    Route::post('matches', 'MatchController@create');
+
+    Route::get('matches/{id}', 'MatchController@show');
+
+    Route::get('matches/by/{id}', 'MatchController@showBy');
+
+    Route::post('matches/update', 'MatchController@update');
+
     
 
 });
