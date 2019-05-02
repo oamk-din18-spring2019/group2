@@ -41,6 +41,12 @@ Route::get('getQuestions/{n}','QuestionController@getQuestions');
 
 Route::group(['middleware' => 'auth:api'], function() {
 
+    Route::get('categories', 'CategoryController@index');
+
+    Route::post('categories', 'CategoryController@store');
+
+    Route::post('categories/update', 'CategoryController@update');
+
     Route::get('questions', 'QuestionController@index');
 
     Route::get('questions/{question}', 'QuestionController@show');
