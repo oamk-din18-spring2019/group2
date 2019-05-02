@@ -36,4 +36,21 @@ class QuestionController extends Controller
 
         return response()->json(null,204);
     }
+
+    public function getQuestions($n)
+    {
+        $questions = Question::inRandomOrder()->limit($n)->get();
+
+        // $array = collect(json_decode($questions, true))->flatten();
+        // $filtered = [];
+
+        // foreach ($array as $bruh) {
+
+        //     if (gettype($bruh) == "NULL") { } else {
+        //         array_push($filtered, $bruh);
+        //     }
+        // }
+        return $questions;
+    }
+
 }
