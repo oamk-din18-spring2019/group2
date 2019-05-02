@@ -47,9 +47,15 @@ class Game extends Component {
       .then(data => {
         const questions = [];
 
-        data.forEach((questionData) => {
-          const { question, option1, option2, option3, correctAnswer } = questionData;
-          const obj = {}
+        data.forEach(questionData => {
+          const {
+            question,
+            option1,
+            option2,
+            option3,
+            correctAnswer
+          } = questionData;
+          const obj = {};
           obj.question = question;
           obj.answers = [
             { text: option1, correct: false },
@@ -57,7 +63,7 @@ class Game extends Component {
             { text: option3, correct: false },
             { text: correctAnswer, correct: true }
           ];
-
+          obj.correctAnswer = correctAnswer;
           this.shuffle(obj.answers);
           questions.push(obj);
           console.log("obj", obj);
@@ -117,7 +123,8 @@ class Game extends Component {
   }
 
   // This will handle the button clicks
-  handleClick(event) {
+
+  handleClick(ans, correctAnswerStr) {
     let questionIndex = this.state.questionIndex;
     let correctAnswer = this.state.correctAnswer + 1;
     let points = this.state.points;
@@ -125,12 +132,15 @@ class Game extends Component {
     if (questionIndex > 13) {
       this.setState({ gameRunning: false });
     }
-
-    if (event.target.id === "correct") {
+    console.log(ans, correctAnswerStr);
+    if (ans === correctAnswerStr) {
+      console.log("Correctanswer");
       this.setState({
         correctAnswer: correctAnswer,
         points: points + 10
       });
+    } else {
+      console.log("Incorrectanswer");
     }
 
     if (this.state.questionIndex === 14) {
@@ -179,8 +189,13 @@ class Game extends Component {
                 // console.log(answer);
                 return (
                   <Button
-                    onClick={this.handleClick}
-                    id={answer.correct ? "correct" : "incorrect"}
+                    onClick={() =>
+                      this.handleClick(
+                        answer.text,
+                        questions[questionIndex].correctAnswer
+                      )
+                    }
+                    // id={answer.correct ? "correct" : "incorrect"}
                     answer={answer.text}
                   />
                 );
