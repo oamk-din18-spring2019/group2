@@ -22,12 +22,22 @@ class UserController extends Controller
         return User::create($request->all());
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
+        $bodyContent = $request->all();
 
-        return $article;
+        $updateObj = $bodyContent['updateObj'];
+        $newTotalScore = $bodyContent['newTotalScore'];
+        $id = $bodyContent['userId'];
+
+
+        $user = User::where('id',$id)->update(['highScores'=>$updateObj, 'totalScore' => $newTotalScore]);
+    
+
+        // $user = User::findOrFail($id);
+        // $user->update($request->all());
+
+        return $user;
     }
 
     public function delete(Request $request, $id)

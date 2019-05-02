@@ -96,7 +96,7 @@ class GameFinished extends Component {
   }
 
   updateScore(updateObj, newTotalScore) {
-    const url = "http://joelmaenpaa.com:8000/api/users/scores";
+    const url = "http://joelmaenpaa.com:8000/api/users/update";
 
     const data = {
       updateObj,
