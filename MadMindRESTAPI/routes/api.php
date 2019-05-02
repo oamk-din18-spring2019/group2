@@ -41,6 +41,12 @@ Route::get('getQuestions/{n}','QuestionController@getQuestions');
 
 Route::group(['middleware' => 'auth:api'], function() {
 
+    Route::get('categories', 'CategoryController@index');
+
+    Route::post('categories', 'CategoryController@store');
+
+    Route::post('categories/update', 'CategoryController@update');
+
     Route::get('questions', 'QuestionController@index');
 
     Route::get('questions/{question}', 'QuestionController@show');
@@ -50,6 +56,14 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::put('questions/{question}', 'QuestionController@update');
 
     Route::delete('questions/{question}', 'QuestionController@delete');
+
+    Route::post('matches', 'MatchController@create');
+
+    Route::get('matches/{id}', 'MatchController@show');
+
+    Route::get('matches/by/{id}', 'MatchController@showBy');
+
+    Route::post('matches/update', 'MatchController@update');
 
     
 
