@@ -33,7 +33,7 @@ class LogInPage extends Component {
       .then(response => response.json())
       .then(myJson => {
         // console.log(myJSON);
-        const apiToken = myJson.api_token;
+        const apiToken = myJson.data.api_token;
         console.log("API TOKEN ", apiToken);
       })
       .catch(err => console.log(err));
