@@ -5,10 +5,13 @@ import Button from "./Buttons";
 import ProgressBar from "./ProgressBar";
 import "../game.css";
 import { Redirect } from "react-router-dom";
+import Header from "../../Header/Header";
 
 class Game extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    console.log(this.props.location);
     this.state = {
       questions: [],
       isLoading: true,
@@ -66,7 +69,6 @@ class Game extends Component {
           obj.correctAnswer = correctAnswer;
           this.shuffle(obj.answers);
           questions.push(obj);
-          console.log("obj", obj);
         });
 
         this.setState({
@@ -161,7 +163,34 @@ class Game extends Component {
 
   // This fetches the questions while the component mounts
   // This also starts the timer
+  handleStartMatch() {
+    console.log("here state ", this.props.location);
+    const url = "http://joelmaenpaa.com:8000/api/matches";
+
+    const obj = {
+      creator: this.props.location.userId,
+      matchType: 0
+    };
+    fetch(url, {
+      body: JSON.stringify(obj),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEPT: "application/json",
+        Authorization: "Bearer " + this.props.location.token
+      }
+      // mode : 'no-cors'
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ matchId: data.id });
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+  }
+
   componentDidMount() {
+    this.handleStartMatch();
     this.fetchQuestions();
     this.startTimer();
   }
@@ -181,41 +210,60 @@ class Game extends Component {
     }
     if (this.state.gameRunning) {
       return (
-        <div className="game-wrapper">
-          <div className="game-group">
-            <Question question={questions[questionIndex].question} />
-            <div className="answer-buttons">
-              {questions[questionIndex].answers.map(answer => {
-                // console.log(answer);
-                return (
-                  <Button
-                    onClick={() =>
-                      this.handleClick(
-                        answer.text,
-                        questions[questionIndex].correctAnswer
-                      )
-                    }
-                    // id={answer.correct ? "correct" : "incorrect"}
-                    answer={answer.text}
-                  />
-                );
-              })}
-            </div>
-            <div className="timer">
-              <ProgressBar percentage={percentage} />
-            </div>
-            <div className="wrong-answers">
-              {"Question #: " + this.state.questionIndex + "/" + this.state.questions.length}
-            </div>
-            <div className="points">
-              {"Correct Answers: " + this.state.correctAnswer + "/" + this.state.questions.length}
+        <div>
+          <Header logout />
+          <div className="game-wrapper">
+            <div className="game-group">
+              <Question question={questions[questionIndex].question} />
+              <div className="answer-buttons">
+                {questions[questionIndex].answers.map(answer => {
+                  // console.log(answer);
+                  return (
+                    <Button
+                      onClick={() =>
+                        this.handleClick(
+                          answer.text,
+                          questions[questionIndex].correctAnswer
+                        )
+                      }
+                      // id={answer.correct ? "correct" : "incorrect"}
+                      answer={answer.text}
+                    />
+                  );
+                })}
+              </div>
+              <div className="timer">
+                <ProgressBar percentage={percentage} />
+              </div>
+              <div className="wrong-answers">
+                {"Question #: " +
+                  this.state.questionIndex +
+                  "/" +
+                  this.state.questions.length}
+              </div>
+              <div className="points">
+                {"Correct Answers: " +
+                  this.state.correctAnswer +
+                  "/" +
+                  this.state.questions.length}
+              </div>
             </div>
           </div>
         </div>
       );
     }
     if (!this.state.gameRunning) {
-      return <Redirect to="/gamefinished" />;
+      return (
+        <Redirect
+          to={{
+            pathname: "/gamefinished",
+            points: this.state.points,
+            numberOfCorrectAnswers: this.state.correctAnswer,
+            matchId: this.state.matchId,
+            token: this.props.location.token
+          }}
+        />
+      );
     }
   }
 }

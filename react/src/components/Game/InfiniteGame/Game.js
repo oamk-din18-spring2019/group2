@@ -4,6 +4,7 @@ import Question from "./Question";
 import Button from "./Buttons";
 import "../game.css";
 import { Redirect } from "react-router-dom";
+import Header from "../../Header/Header";
 
 class Game extends Component {
   constructor() {
@@ -37,16 +38,23 @@ class Game extends Component {
   fetchQuestions() {
     let numberOfQuestions = 120000;
     let url =
-      "http://joelmaenpaa.com:8000/api/getQuestions/" + numberOfQuestions.toString();
+      "http://joelmaenpaa.com:8000/api/getQuestions/" +
+      numberOfQuestions.toString();
     console.log(url);
     fetch(url)
       .then(response => response.json())
       .then(data => {
         let questions = [];
 
-        data.forEach((questionData) => {
-          const { question, option1, option2, option3, correctAnswer } = questionData;
-          const obj = {}
+        data.forEach(questionData => {
+          const {
+            question,
+            option1,
+            option2,
+            option3,
+            correctAnswer
+          } = questionData;
+          const obj = {};
           obj.question = question;
           obj.answers = [
             { text: option1, correct: false },
@@ -88,12 +96,12 @@ class Game extends Component {
     if (event.target.id === "incorrect") {
       this.setState({
         wrongAnswer: this.state.wrongAnswer + 1
-      })
+      });
     }
     if (this.state.wrongAnswer === 3) {
       this.setState({
         gameRunning: false
-      })
+      });
     }
     this.setState({
       questionIndex: questionIndex + 1,
@@ -120,26 +128,29 @@ class Game extends Component {
     }
     if (this.state.gameRunning) {
       return (
-        <div className="game-wrapper">
-          <div className="game-group">
-            <Question question={questions[questionIndex].question} />
-            <div className="answer-buttons">
-              {questions[questionIndex].answers.map(answer => {
-                console.log(answer);
-                return (
-                  <Button
-                    onClick={this.handleClick}
-                    id={answer.correct ? "correct" : "incorrect"}
-                    answer={answer.text}
-                  />
-                );
-              })}
-            </div>
-            <div className="wrong-answers">
-              {"Wrong Answers: " + this.state.wrongAnswer + "/3"}
-            </div>
-            <div className="points">
-              {"Question #: " + this.state.questionsAnswered}
+        <div>
+          <Header logout />
+          <div className="game-wrapper">
+            <div className="game-group">
+              <Question question={questions[questionIndex].question} />
+              <div className="answer-buttons">
+                {questions[questionIndex].answers.map(answer => {
+                  console.log(answer);
+                  return (
+                    <Button
+                      onClick={this.handleClick}
+                      id={answer.correct ? "correct" : "incorrect"}
+                      answer={answer.text}
+                    />
+                  );
+                })}
+              </div>
+              <div className="wrong-answers">
+                {"Wrong Answers: " + this.state.wrongAnswer + "/3"}
+              </div>
+              <div className="points">
+                {"Question #: " + this.state.questionsAnswered}
+              </div>
             </div>
           </div>
         </div>

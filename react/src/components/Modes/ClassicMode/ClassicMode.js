@@ -4,13 +4,16 @@ import Preloader from "../../Preloader/Preloader";
 import axios from "axios";
 import Table from "react-bootstrap/lib/Table";
 import { Link } from "react-router-dom";
-
+import Header from "../../Header/Header";
 class ClassicMode extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log("props niggi", this.props);
     this.state = {
       top10Players: [],
-      isLoading: true
+      isLoading: true,
+      userId: this.props.location.userId,
+      token: this.props.location.token
     };
   }
 
@@ -20,12 +23,38 @@ class ClassicMode extends Component {
         [stateName]: data,
         isLoading: false
       });
-      console.log(this.state.top10Players);
+      //  console.log(this.state.top10Players);
     });
   }
 
   componentDidMount() {
     this.getData("https://jsonplaceholder.typicode.com/users", "top10Players");
+  }
+
+  handleStartMatch() {
+    console.log("here state ", this.props);
+    const url = "http://joelmaenpaa.com:8000/api/matches";
+
+    const obj = {
+      creator: this.props.location.userId,
+      matchType: 0
+    };
+    fetch(url, {
+      body: JSON.stringify(obj),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEPT: "application/json",
+        Authorization: "Bearer " + this.props.location.token
+      }
+      // mode : 'no-cors'
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ matchId: data.id, redirect: true });
+        console.log(data);
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -34,40 +63,56 @@ class ClassicMode extends Component {
     if (isLoading) {
       return <Preloader />;
     }
+
     return (
-      <div className="mode-wrapper">
-        <div className="Table">
-          <Table bordered hover condensed className="blackfont">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {top10Players.map((row, index) => (
-                <tr key={row.username}>
-                  <td>{index + 1}</td>
-                  <td>{row.username}</td>
-                  <td>{row.email}</td>
+      <div>
+        <Header logout />
+        <div className="mode-wrapper">
+          <div className="Table">
+            <Table bordered hover condensed className="blackfont">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Username</th>
+                  <th>Score</th>
                 </tr>
-              ))}
-              <tr className="playerRank">
-                <td>asd </td>
-                <td> asddas</td>
-                <td> adsdasds</td>
-              </tr>
-            </tbody>
-          </Table>
-        </div>
-        <div className="text-center">
-          <Link to="/classic/game">
-            <button className="select-button">Start Match</button>
-          </Link>
-          <Link to="/gameselect">
-            <button className="select-button">Go Back</button>
-          </Link>
+              </thead>
+              <tbody>
+                {top10Players.map((row, index) => (
+                  <tr key={row.username}>
+                    <td>{index + 1}</td>
+                    <td>{row.username}</td>
+                    <td>{row.email}</td>
+                  </tr>
+                ))}
+                <tr className="playerRank">
+                  <td>asd </td>
+                  <td> asddas</td>
+                  <td> adsdasds</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+          <div className="text-center">
+            <Link
+              to={{
+                pathname: "/classic/game",
+                userId: this.state.userId,
+                token: this.state.token
+              }}
+            >
+              <button className="select-button">Start Match</button>
+            </Link>
+            <Link
+              to={{
+                pathname: "/gameselect",
+                userId: this.props.location.userId,
+                token: this.props.location.token
+              }}
+            >
+              <button className="select-button">Go Back</button>
+            </Link>
+          </div>
         </div>
       </div>
     );
