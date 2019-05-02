@@ -139,7 +139,7 @@ class Game extends Component {
               {"Wrong Answers: " + this.state.wrongAnswer + "/3"}
             </div>
             <div className="points">
-              {this.state.correctAnswer + "/" + this.state.questionsAnswered}
+              {"Question #: " + this.state.questionsAnswered}
             </div>
           </div>
         </div>
