@@ -36,20 +36,50 @@ class Header extends Component {
     }
   }
   render() {
-    return (
-      <header className="header">
-        <NavLink to="/">
-          <img
-            className="header-logo"
-            alt="madmind"
-            src={require("../../img/madmind.png")}
-          />
-        </NavLink>
-        <nav className="navbar">
-          {this.navLinks}
-        </nav>
-      </header>
-    );
+    console.log(this.props);
+    if (!this.props.logout) {
+      return (
+        <header className="header">
+          <NavLink to="/">
+            <img
+              className="header-logo"
+              alt="madmind"
+              src={require("../../img/madmind.png")}
+            />
+          </NavLink>
+          <nav className="navbar">
+            {this.navLinks}
+            {/* <NavLink to={this.redirectRoute} className="navbar-link">
+            {this.c}
+          </NavLink> */}
+            {/* <NavLink to="/signup" className="navbar-link">
+            SIGN UP
+          </NavLink> */}
+          </nav>
+        </header>
+      );
+    } else {
+      return (
+        <header className="header">
+          <NavLink to="/gameselect">
+            <img
+              className="header-logo"
+              alt="madmind"
+              src={require("../../img/madmind.png")}
+            />
+          </NavLink>
+          <nav className="navbar">
+            {this.navLinks}
+            {/* <NavLink to={this.redirectRoute} className="navbar-link">
+            {this.c}
+          </NavLink> */}
+            {/* <NavLink to="/signup" className="navbar-link">
+            SIGN UP
+          </NavLink> */}
+          </nav>
+        </header>
+      );
+    }
   }
 }
 
