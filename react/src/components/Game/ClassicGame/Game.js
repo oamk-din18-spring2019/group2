@@ -158,8 +158,6 @@ class Game extends Component {
     console.log("points: " + this.state.points);
   }
 
-  // This fetches the questions while the component mounts
-  // This also starts the timer
   handleStartMatch() {
     console.log("here state ", this.props.location);
     const url = "http://joelmaenpaa.com:8000/api/matches";
@@ -185,6 +183,8 @@ class Game extends Component {
       .catch(err => console.log(err));
   }
 
+  // This fetches the questions while the component mounts
+  // This also starts the timer
   componentDidMount() {
     this.handleStartMatch();
     this.fetchQuestions();
@@ -250,7 +250,7 @@ class Game extends Component {
       return (
         <Redirect
           to={{
-            pathname: "/gamefinished",
+            pathname: "/classic/game/finish",
             points: this.state.points,
             numberOfCorrectAnswers: this.state.correctAnswer,
             matchId: this.state.matchId,

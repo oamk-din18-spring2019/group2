@@ -43,6 +43,7 @@ class GameFinished extends Component {
         console.log(data);
       })
       .catch(err => console.log(err));
+
   }
   getData(url, stateName) {
     axios.get(url).then(({ data }) => {
@@ -174,7 +175,12 @@ class GameFinished extends Component {
             >
               <button className="select-button">Start Match</button>
             </Link>
-            <Link to="/gameselect">
+            <Link
+              to={{
+                pathname: "/gameselect",
+                token: this.state.token,
+                userId: this.state.userId
+              }}>
               <button className="select-button">Go Back</button>
             </Link>
           </div>

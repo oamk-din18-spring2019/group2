@@ -7,8 +7,8 @@ import { Redirect } from "react-router-dom";
 import Header from "../../Header/Header";
 
 class Game extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       questions: [],
       isLoading: true,
@@ -110,9 +110,34 @@ class Game extends Component {
     console.log("points: " + this.state.points);
   }
 
+  handleStartMatch() {
+    console.log("here state ", this.props.location);
+    const url = "http://joelmaenpaa.com:8000/api/matches";
+
+    const obj = {
+      creator: this.props.location.userId,
+      matchType: 2
+    };
+    fetch(url, {
+      body: JSON.stringify(obj),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEPT: "application/json",
+        Authorization: "Bearer " + this.props.location.token
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ matchId: data.id });
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+  }
+
   // This fetches the questions while the component mounts
-  // This also starts the timer
   componentDidMount() {
+    this.handleStartMatch();
     this.fetchQuestions();
   }
 
@@ -158,7 +183,17 @@ class Game extends Component {
       );
     }
     if (!this.state.gameRunning) {
-      return <Redirect to="/gamefinished" />;
+      return <Redirect
+        to={{
+          pathname: "/infinite/game/finish",
+          points: this.state.points,
+          numberOfCorrectAnswers: this.state.correctAnswer,
+          matchId: this.state.matchId,
+          token: this.props.location.token,
+          userId: this.props.location.userId,
+          mode: "infinite"
+        }}
+      />;
     }
   }
 }

@@ -36,8 +36,8 @@ class GameSelect extends Component {
               <Link
                 to={{
                   pathname: "/spree",
-                  userId: this.props.location.userId,
-                  token: this.props.location.token
+                  userId: this.state.userId,
+                  token: this.state.token
                 }}
               >
                 <button className="game-button">Spree</button>
@@ -45,8 +45,8 @@ class GameSelect extends Component {
               <Link
                 to={{
                   pathname: "/infinite",
-                  userId: this.props.location.userId,
-                  token: this.props.location.token
+                  userId: this.state.userId,
+                  token: this.state.token
                 }}
               >
                 <button className="game-button">Infinite</button>
