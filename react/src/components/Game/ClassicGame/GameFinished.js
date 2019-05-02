@@ -37,13 +37,13 @@ class GameFinished extends Component {
         ACCEPT: "application/json",
         Authorization: "Bearer " + this.props.location.token
       }
-      // mode : 'no-cors'
     })
       .then(res => res.json())
       .then(data => {
         console.log(data);
       })
       .catch(err => console.log(err));
+
   }
   getData(url, stateName) {
     axios.get(url).then(({ data }) => {
@@ -68,7 +68,6 @@ class GameFinished extends Component {
         ACCEPT: "application/json",
         Authorization: "Bearer " + this.props.location.token
       }
-      // mode : 'no-cors'
     })
       .then(res => res.json())
       .then(data => {
@@ -83,7 +82,7 @@ class GameFinished extends Component {
 
           const newhighScores = {};
           keys.forEach(key => {
-            if (key != this.props.location.mode) {
+            if (key !== this.props.location.mode) {
               newhighScores[key] = data.highScores.key;
             } else {
               newhighScores[key] = this.props.location.points;
@@ -112,7 +111,6 @@ class GameFinished extends Component {
         ACCEPT: "application/json",
         Authorization: "Bearer " + this.props.location.token
       }
-      // mode : 'no-cors'
     })
       .then(response => response.json())
       .then(myJSON => {
@@ -182,8 +180,7 @@ class GameFinished extends Component {
                 pathname: "/gameselect",
                 token: this.state.token,
                 userId: this.state.userId
-              }}
-            >
+              }}>
               <button className="select-button">Go Back</button>
             </Link>
           </div>

@@ -23,7 +23,6 @@ class Header extends Component {
       );
     });
 
-    // console.log(this.navLinks);
     if (this.c === "logout") {
       console.log(this.c);
       this.redirectRoute = "/";

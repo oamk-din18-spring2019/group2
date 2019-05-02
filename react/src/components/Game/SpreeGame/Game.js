@@ -8,8 +8,8 @@ import { Redirect } from "react-router-dom";
 import Header from "../../Header/Header";
 
 class Game extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       questions: [],
       isLoading: true,
@@ -65,10 +65,9 @@ class Game extends Component {
             { text: option3, correct: false },
             { text: correctAnswer, correct: true }
           ];
-
+          obj.correctAnswer = correctAnswer;
           this.shuffle(obj.answers);
           questions.push(obj);
-          //   console.log("obj", obj);
         });
 
         this.setState({
@@ -76,8 +75,6 @@ class Game extends Component {
           isLoading: false,
           gameRunning: true
         });
-
-        /// console.log(this.state);
       })
 
       .catch(e => console.log("Failed to fetch questions", e));
@@ -107,13 +104,13 @@ class Game extends Component {
   }
 
   // This will handle the button clicks
-  handleClick(event) {
+  handleClick(ans, correctAnswerStr) {
     let questionIndex = this.state.questionIndex;
     let correctAnswer = this.state.correctAnswer + 1;
     let questionsAnswered = this.state.questionsAnswered + 1;
     let points = this.state.points;
 
-    if (event.target.id === "correct") {
+    if (ans === correctAnswerStr) {
       this.setState({
         correctAnswer: correctAnswer,
         points: points + 10
@@ -123,14 +120,37 @@ class Game extends Component {
       questionIndex: questionIndex + 1,
       questionsAnswered: questionsAnswered
     });
+  }
 
-    // console.log("Question #" + (questionIndex + 1));
-    // console.log("points: " + this.state.points);
+  handleStartMatch() {
+    console.log("here state ", this.props.location);
+    const url = "http://joelmaenpaa.com:8000/api/matches";
+
+    const obj = {
+      creator: this.props.location.userId,
+      matchType: 1
+    };
+    fetch(url, {
+      body: JSON.stringify(obj),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ACCEPT: "application/json",
+        Authorization: "Bearer " + this.props.location.token
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ matchId: data.id });
+        console.log(data);
+      })
+      .catch(err => console.log(err));
   }
 
   // This fetches the questions while the component mounts
   // This also starts the timer
   componentDidMount() {
+    this.handleStartMatch();
     this.fetchQuestions();
     this.startTimer();
   }
@@ -157,11 +177,14 @@ class Game extends Component {
               <Question question={questions[questionIndex].question} />
               <div className="answer-buttons">
                 {questions[questionIndex].answers.map(answer => {
-                  console.log(answer);
                   return (
                     <Button
-                      onClick={this.handleClick}
-                      id={answer.correct ? "correct" : "incorrect"}
+                      onClick={() =>
+                        this.handleClick(
+                          answer.text,
+                          questions[questionIndex].correctAnswer
+                        )
+                      }
                       answer={answer.text}
                     />
                   );
@@ -179,7 +202,17 @@ class Game extends Component {
       );
     }
     if (!this.state.gameRunning) {
-      return <Redirect to="/gamefinished" />;
+      return <Redirect
+        to={{
+          pathname: "/spree/game/finish",
+          points: this.state.points,
+          numberOfCorrectAnswers: this.state.correctAnswer,
+          matchId: this.state.matchId,
+          token: this.props.location.token,
+          userId: this.props.location.userId,
+          mode: "spree"
+        }}
+      />;
     }
   }
 }

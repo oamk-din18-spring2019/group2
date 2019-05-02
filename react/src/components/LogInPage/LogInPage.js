@@ -27,11 +27,9 @@ class LogInPage extends Component {
         Accept: "application/json"
         // 'Authorization': 'Bearer '+ apiToken;
       }
-      // mode : 'no-cors'
     })
       .then(response => response.json())
       .then(myJson => {
-        // console.log(myJSON);
         if (myJson.data.api_token) {
           const apiToken = myJson.data.api_token;
           const userId = myJson.data.id;
@@ -54,7 +52,6 @@ class LogInPage extends Component {
         console.log(
           "YOU JUST GOT BENCHED KID FUCK YOUR MOTHERFUCKING ASS HOLE YOU FUCKING CUNT"
         );
-        //   console.log(err)
       });
   };
 
