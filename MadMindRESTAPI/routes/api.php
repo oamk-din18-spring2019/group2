@@ -65,6 +65,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::post('matches/update', 'MatchController@update');
 
+    Route::get('users/{n}', 'UserController@show');
+
     
 
 });

@@ -1,34 +1,63 @@
 // Import all the stuff we need
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import './header.css';
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import "./header.css";
 
 class Header extends Component {
-    constructor() {
-        super()
-        this.state = {
-            authenticated: false
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
 
-    render() {
-        return (
-            <header className="header">
-                <NavLink to="/">
-                    <img className="header-logo" alt="madmind" src={require('../../img/madmind.png')} />
-                </NavLink>
+    this.keys = Object.keys(this.props);
 
-                <nav className="navbar">
-                    <NavLink to="/login" className="navbar-link">
-                        LOGIN
-                    </NavLink>
-                    <NavLink to="/signup" className="navbar-link">
-                        SIGN UP
-                    </NavLink>
-                </nav>
-            </header>
-        )
+    this.navLinks = [];
+    this.keys.forEach((key, index) => {
+      let redirectRoute = "/" + key;
+      if (key === "logout") {
+        redirectRoute = "/";
+      }
+      this.navLinks.push(
+        <NavLink to={redirectRoute} className="navbar-link">
+          {key}
+        </NavLink>
+      );
+    });
+
+    // console.log(this.navLinks);
+    if (this.c === "logout") {
+      console.log(this.c);
+      this.redirectRoute = "/";
+    } else {
+      this.redirectRoute = "/" + this.c;
     }
+  }
+
+  handleClick() {
+    if (this.c === "logout") {
+    }
+  }
+  render() {
+    return (
+      <header className="header">
+        <NavLink to="/">
+          <img
+            className="header-logo"
+            alt="madmind"
+            src={require("../../img/madmind.png")}
+          />
+        </NavLink>
+        <nav className="navbar">
+          {this.navLinks}
+          {/* <NavLink to={this.redirectRoute} className="navbar-link">
+            {this.c}
+          </NavLink> */}
+          {/* <NavLink to="/signup" className="navbar-link">
+            SIGN UP
+          </NavLink> */}
+        </nav>
+      </header>
+    );
+  }
 }
 
 export default Header;

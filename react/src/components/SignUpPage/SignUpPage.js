@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-
+import Header from "../Header/Header";
 import "./signUpPage.css";
 
 class SignUpPage extends Component {
@@ -104,46 +104,49 @@ class SignUpPage extends Component {
     }
 
     return (
-      <div className="form-wrapper">
-        <div className="form-group">
-          <form onSubmit={this.handleSubmit}>
-            <input
-              className="signup-input"
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={event =>
-                this.setState({ username: event.target.value })
-              }
-            />
-            <br />
-            <input
-              className="signup-input"
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={event =>
-                this.setState({ password: event.target.value })
-              }
-            />
-            <br />
-            <input
-              className="signup-input"
-              type="password"
-              name="passwordConfirm"
-              placeholder="Confirm Password"
-              onChange={event =>
-                this.setState({ passwordConfirm: event.target.value })
-              }
-            />
-            <br />
-            <button
-              className="signup-button"
-              onClick={event => this.handleSubmit(event)}
-            >
-              SIGN UP
-            </button>
-          </form>
+      <div>
+        <Header login="true" />
+        <div className="form-wrapper">
+          <div className="form-group">
+            <form onSubmit={this.handleSubmit}>
+              <input
+                className="signup-input"
+                type="text"
+                name="username"
+                placeholder="Username"
+                onChange={event =>
+                  this.setState({ username: event.target.value })
+                }
+              />
+              <br />
+              <input
+                className="signup-input"
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={event =>
+                  this.setState({ password: event.target.value })
+                }
+              />
+              <br />
+              <input
+                className="signup-input"
+                type="password"
+                name="passwordConfirm"
+                placeholder="Confirm Password"
+                onChange={event =>
+                  this.setState({ passwordConfirm: event.target.value })
+                }
+              />
+              <br />
+              <button
+                className="signup-button"
+                onClick={event => this.handleSubmit(event)}
+              >
+                SIGN UP
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     );

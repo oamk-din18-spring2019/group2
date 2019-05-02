@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 // Import the components
 import StartingPage from "./components/StartingPage/StartingPage";
 import SignInPage from "./components/SignUpPage/SignUpPage";
-import Header from "./components/Header/Header";
+
 import Preloader from "./components/Preloader/Preloader";
 import LogInPage from "./components/LogInPage/LogInPage";
 import GameSelect from "./components/GameSelect/GameSelect";
@@ -37,7 +37,6 @@ class App extends Component {
     }
     return (
       <BrowserRouter>
-        <Header />
         <Switch>
           <Route path="/" component={StartingPage} exact />
           <Route path="/login" component={LogInPage} exact />
