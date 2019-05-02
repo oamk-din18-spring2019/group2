@@ -26,6 +26,16 @@
   transition-duration: 0.4s;
 }
 
-.playerRank {
+.kentteri {
+  text-align: center;
   color: #ff8648;
+}
+
+.margini {
+  margin-top: 20%;
+  margin-bottom: 5%;
+}
+
+.nappimargin {
+  margin-top: 2%;
 }

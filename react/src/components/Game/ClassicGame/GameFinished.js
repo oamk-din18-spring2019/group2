@@ -9,7 +9,6 @@ class GameFinished extends Component {
   constructor() {
     super();
     this.state = {
-      top10Players: [],
       isLoading: true
     };
   }
@@ -29,7 +28,7 @@ class GameFinished extends Component {
   }
 
   render() {
-    const { top10Players, isLoading } = this.state;
+    const { isLoading } = this.state;
 
     if (isLoading) {
       return <Preloader />;
@@ -37,6 +36,7 @@ class GameFinished extends Component {
     return (
       <div className="mode-wrapper">
         <div className="Table">
+          <h1 className="kentteri margini">Your Highest Score</h1>
           <Table bordered hover condensed className="blackfont">
             <thead>
               <tr>
@@ -46,22 +46,32 @@ class GameFinished extends Component {
               </tr>
             </thead>
             <tbody>
-              {top10Players.map((row, index) => (
-                <tr key={row.username}>
-                  <td>{index + 1}</td>
-                  <td>{row.username}</td>
-                  <td>{row.email}</td>
-                </tr>
-              ))}
-              <tr className="playerRank">
-                <td>asd </td>
-                <td> asddas</td>
-                <td> adsdasds</td>
+              <tr>
+                <td>kappa</td>
+                <td>pakka</td>
+                <td>pappa</td>
+              </tr>
+            </tbody>
+          </Table>
+          <h1 className="kentteri margini">Your Last Score</h1>
+          <Table bordered hover condensed className="blackfont">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>kappa</td>
+                <td>pakka</td>
+                <td>pappa</td>
               </tr>
             </tbody>
           </Table>
         </div>
-        <div className="text-center">
+        <div className="text-center nappimargin">
           <Link to="/classic/game">
             <button className="select-button">Start Match</button>
           </Link>
