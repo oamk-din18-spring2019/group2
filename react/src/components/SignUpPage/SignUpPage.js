@@ -22,7 +22,7 @@ class SignUpPage extends Component {
     let formIsValid = true;
 
     // Test if the username and password are valid inputs
-    if (!/^[a-zA-Z]+$/.test(this.state.username)) {
+    if (!/^[a-zA-Z0-9]+$/.test(this.state.username)) {
       formIsValid = false;
       alert("Your username can contain only letters");
     }
