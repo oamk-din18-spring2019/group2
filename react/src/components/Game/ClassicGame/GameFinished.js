@@ -177,7 +177,13 @@ class GameFinished extends Component {
             >
               <button className="select-button">Start Match</button>
             </Link>
-            <Link to="/gameselect">
+            <Link
+              to={{
+                pathname: "/gameselect",
+                token: this.state.token,
+                userId: this.state.userId
+              }}
+            >
               <button className="select-button">Go Back</button>
             </Link>
           </div>
