@@ -13,6 +13,7 @@ class GameFinished extends Component {
       userId: this.props.location.userId,
       token: this.props.location.token
     };
+    this.saveMatch();
   }
 
   saveMatch() {
@@ -132,7 +133,7 @@ class GameFinished extends Component {
               <tbody>
                 <tr>
                   <td>{this.state.username}</td>
-                  <td>pappa</td>
+                  <td>##</td>
                 </tr>
               </tbody>
             </Table>

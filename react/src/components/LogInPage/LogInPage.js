@@ -10,13 +10,15 @@ class LogInPage extends Component {
     };
   }
 
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     const data = {
       username: this.state.username,
       password: this.state.password
     };
 
     const url = "http://joelmaenpaa.com:8000/api/login";
+    // console.log(JSON.stringify(data));
     fetch(url, {
       body: JSON.stringify(data),
       method: "POST",
@@ -37,6 +39,8 @@ class LogInPage extends Component {
             authenticated: true,
             userId: userId
           });
+          // console.log(this.state.authenticated);
+          // console.log(apiToken);
         } else {
           alert("Login failed!");
         }
@@ -62,32 +66,34 @@ class LogInPage extends Component {
 
     return (
       <div>
-        <Header signup />
-        <div className="form-wrapper">
-          <div className="form-group">
-            <input
-              className="signup-input"
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={event =>
-                this.setState({ username: event.target.value })
-              }
-            />
-            <input
-              className="signup-input"
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={event =>
-                this.setState({ password: event.target.value })
-              }
-            />
-            <button className="signup-button" onClick={this.handleSubmit}>
-              LOGIN
-            </button>
+        <form onSubmit={this.handleSubmit}>
+          <Header signup />
+          <div className="form-wrapper">
+            <div className="form-group">
+              <input
+                className="signup-input"
+                type="text"
+                name="username"
+                placeholder="Username"
+                onChange={event =>
+                  this.setState({ username: event.target.value })
+                }
+              />
+              <input
+                className="signup-input"
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={event =>
+                  this.setState({ password: event.target.value })
+                }
+              />
+              <button className="signup-button" type="submit">
+                LOGIN
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     );
   }

@@ -58,7 +58,7 @@ class SignUpPage extends Component {
     if (this.handleValidation()) {
       const url = "http://joelmaenpaa.com:8000/api/register";
 
-      console.log(JSON.stringify(data));
+      // console.log(JSON.stringify(data));
       fetch(url, {
         body: JSON.stringify(data),
         method: "POST",
@@ -70,7 +70,7 @@ class SignUpPage extends Component {
       })
         .then(response => response.json())
         .then(myJSON => {
-          console.log(myJSON);
+          // console.log(myJSON);
         })
         .catch(err => console.log(err));
 

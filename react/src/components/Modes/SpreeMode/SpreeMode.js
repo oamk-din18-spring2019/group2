@@ -21,7 +21,7 @@ class ClassicMode extends Component {
         [stateName]: data,
         isLoading: false
       });
-      console.log(this.state.top10Players);
+      // console.log(this.state.top10Players);
     });
   }
 

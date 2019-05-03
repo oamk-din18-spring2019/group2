@@ -134,7 +134,7 @@ class GameFinished extends Component {
               <tbody>
                 <tr>
                   <td>{this.state.username}</td>
-                  <td>pappa</td>
+                  <td>##</td>
                 </tr>
               </tbody>
             </Table>
