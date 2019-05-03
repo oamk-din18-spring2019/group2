@@ -27,7 +27,7 @@ class GameFinished extends Component {
       score: this.props.location.points
     };
 
-    console.log("match update obj", obj);
+    // console.log("match update obj", obj);
     fetch(url, {
       body: JSON.stringify(obj),
       method: "POST",
@@ -134,7 +134,7 @@ class GameFinished extends Component {
               <tbody>
                 <tr>
                   <td>{this.state.username}</td>
-                  <td>pappa</td>
+                  <td>##</td>
                 </tr>
               </tbody>
             </Table>
