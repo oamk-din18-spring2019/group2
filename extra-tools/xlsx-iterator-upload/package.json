@@ -16,6 +16,6 @@
     "mysql2": "^1.6.5",
     "querystring": "^0.2.0",
     "request": "^2.88.0",
-    "sequelize": "^5.2.13"
+    "sequelize": "^5.15.1"
   }
 }
